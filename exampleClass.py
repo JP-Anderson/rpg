@@ -11,5 +11,5 @@ class ExampleClass:
 		return
 
 	def printYoSelf(self):
-		print self.field1 + ", " + self.field2 + ", " + self.field3
+		print (self.field1 + ", " + self.field2 + ", " + self.field3)
 	
