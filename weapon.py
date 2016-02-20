@@ -1,13 +1,29 @@
 # base weapon class
+from attack import Attack
 
 class Weapon:
 
+	
 	#lol
 	def __init__(self, keyRow, valueRow):
+		#print ("we are here")
 		numberOfKeys = len(keyRow)
-		values = {}
-		for i in range(0, numberOfKeys-1):
-			values[keyRow[i]] = valueRow[i]
+		self.values = {}
+		#print (numberOfKeys)
+		for i in range(0, numberOfKeys):
+			self.values[keyRow[i]] = valueRow[i]
+			#print (keyRow[i]+" : "+self.values[keyRow[i]])
 
-	def getValue(self, key):
-		return self.values[key]
+	def toString(self):
+		print(self.values)
+	
+	def attack(self):
+		attack = Attack(self.values["BaseD"],
+						self.values["ShkD"],
+						self.values["BrnD"],
+						self.values["PsnD"],
+						self.values["Dodgeability"],
+						self.values["BaseCritC"],
+						self.values["CritD"],
+						self.values["Name"])
+		return attack
