@@ -6,17 +6,15 @@ from settings import *
 class Attack:
 	
 	def __init__(self, baseD, shkD, brnD, psnD, dodge, baseCritC, critD, weapon):
-		self.baseD = baseD;
-		self.shkD = shkD;
-		self.brnD = brnD;
-		self.psnD = psnD;
-		self.dodge = dodge;
-		self.baseCritC = baseCritC;
-		self.critD = critD;
-		self.weapon = weapon;
+		self.baseD = baseD
+		self.shkD = shkD
+		self.brnD = brnD
+		self.psnD = psnD
+		self.dodge = dodge
+		self.baseCritC = baseCritC
+		self.critD = critD
+		self.weapon = weapon
 		
-	
-	def stats(self):
 		critRoll = random.random()
 		#print("Rolled " + str(critRoll) + " for " + self.baseCritC + ".")
 		if critRoll < float(self.baseCritC)*3:
@@ -28,6 +26,9 @@ class Attack:
 		self.shkD = float(self.shkD)*self.crit
 		self.brnD = float(self.brnD)*self.crit
 		self.psnD = float(self.psnD)*self.crit
+	
+	def stats(self):
+		
 		
 		
 		if PRINT_DETAILED_STATS == True:
