@@ -1,4 +1,5 @@
 # base weapon class
+from settings import *
 from attack import Attack
 
 class Weapon:
@@ -7,6 +8,7 @@ class Weapon:
 	#lol
 	def __init__(self, keyRow, valueRow):
 		#print ("we are here")
+		self.type = ObjectType.WEAPON
 		numberOfKeys = len(keyRow)
 		self.values = {}
 		#print (numberOfKeys)
