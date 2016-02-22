@@ -26,8 +26,11 @@ class Character:
 		self.speed = speed
 		self.humanity = humanity
 		
-		self.hp = 100+endurance*20
-		self.ap = 2*speed+2*agility
+		self.maxHP = 100+endurance*20
+		self.hp = self.maxHP
+		self.status = 1
+		self.maxAP = 2*speed+2*agility
+		self.ap = self.maxAP
 		
 	def attack(self):
 		if self.weapon != None:
@@ -60,7 +63,11 @@ class Character:
 			#print(str(sum(resistances)))
 			#print(str((1-sum(resistances))*totalDamage))
 			self.hp = self.hp-totalDamage
-			print(self.name + " has " + str(self.hp) + " left.")
+			if hp < 0:
+				print(self.name + " has died.")
+				self.status = 0
+			else: 
+				print(self.name + " has " + str(self.hp) + " left.")
 		
 
 	def equipArmour(self, armour):
