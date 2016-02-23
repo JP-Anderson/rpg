@@ -68,11 +68,11 @@ class TestMain:
 
 	battle = Battle([bob], [orc2, orc1, orc3])
 	
-	#for i in range (0,40):
-	#	print()
-	#	orc1.defend(bob.attack())
-	#	print()
-	#	bob.defend(orc1.attack())
+	for i in range (0,4):
+		print()
+		orc1.defend(bob.attack())
+		print()
+		bob.defend(orc1.attack())
 	
 	
 	

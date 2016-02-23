@@ -26,7 +26,7 @@ class Character:
 		self.speed = speed
 		self.humanity = humanity
 		
-		self.maxHP = 100+endurance*20
+		self.maxHP = 200+endurance*50
 		self.hp = self.maxHP
 		self.status = 1
 		self.maxAP = 2*speed+2*agility
@@ -58,12 +58,13 @@ class Character:
 			print("Burn damage......."+str(buD) + " out of " + str(attack.brnD))
 			poD = (1-resistances["PsnD"])*float(attack.psnD)
 			print("Poison damage....."+str(poD) + " out of " + str(attack.psnD))
-			totalDamage = phD + shD + buD + poD
+			totalDamage = int(phD + shD + buD + poD)
 			print("Total............." + str(totalDamage))
 			#print(str(sum(resistances)))
 			#print(str((1-sum(resistances))*totalDamage))
 			self.hp = self.hp-totalDamage
-			if hp < 0:
+			print(self.name + " has " + str(self.hp) + "/" + str(self.maxHP) + " left.")
+			if self.hp < 0:
 				print(self.name + " has died.")
 				self.status = 0
 			else: 
