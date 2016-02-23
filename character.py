@@ -26,7 +26,7 @@ class Character:
 		self.speed = speed
 		self.humanity = humanity
 		
-		self.maxHP = 200+endurance*50
+		self.maxHP = 400+endurance*20
 		self.hp = self.maxHP
 		self.status = 1
 		self.maxAP = 2*speed+2*agility
@@ -45,6 +45,7 @@ class Character:
 		dodgeChance = 0.3+self.agility*0.02+self.speed*0.01
 		if PRINT_DETAILED_STATS == True:
 			print(self.name + " needs to roll " + str(dodgeChance) + " or less...")
+			print("Agility " + str(0.02*self.agility) + "  +  Speed " + str(0.01*self.speed) + "  + 0.3")
 			print("Rolls " + str("%.3f" % dodgeRoll) + ".")
 		if dodgeRoll <= dodgeChance: print(self.name + " dodges.")
 		else: 
@@ -84,6 +85,8 @@ class Character:
 	
 	def getEquipmentLoad(self):
 		equipmentLoad = 0
+		self.maxCarryWeight = CARRY_WEIGHTS_BY_ENDURANCE[self.endurance]
+		
 		print(self.name + " Equipment Load")
 		
 		if self.weapon.type == ObjectType.WEAPON:
@@ -112,7 +115,17 @@ class Character:
 			weight = int(self.legArmour.values["Weight"])
 			equipmentLoad = equipmentLoad + weight
 		
-		print(equipmentLoad)
+		encumbrancePerc = equipmentLoad/self.maxCarryWeight
+		encumbrance = Encumbrance.MED
+		if encumbrancePerc <= EncumbranceThreshold.LOW.value:
+			encumbrance = encumbrance.LOW
+		elif encumbrancePerc > EncumbranceThreshold.HIGH.value:
+			encumbrance = encumbrance.HIGH
+		
+		print(str(equipmentLoad) + " CURRENT LOAD")
+		print(str(self.maxCarryWeight) + " MAX LOAD")
+		print(encumbrancePerc)
+		print(str(encumbrance))
 		return equipmentLoad
 	
 	def getDamageResistances(self):

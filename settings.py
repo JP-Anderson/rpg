@@ -1,8 +1,14 @@
 #settings
 from enum import Enum
 
+#logging
 PRINT_DETAILED_STATS = True
 
+#fighter statistic variables
+#                ENDURANCE =  1           5              10             15             20             25             30             35             40
+CARRY_WEIGHTS_BY_ENDURANCE = [15,17,19,21,23,25,27,29,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62]
+
+#enums
 class ObjectType(Enum):
 	WEAPON = 0
 	ARMOUR = 1
@@ -27,4 +33,12 @@ class WeaponClass(Enum):
 	CONVENTIONAL = 0
 	ENERGY = 1	
 	MELEE = 2
-	
+
+class EncumbranceThreshold(Enum):
+	LOW = 0.35
+	HIGH = 0.7
+
+class Encumbrance(Enum):
+	LOW = 0
+	MED = 1
+	HIGH = 2
