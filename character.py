@@ -72,13 +72,13 @@ class Character:
 		
 
 	def equipArmour(self, armour):
-		if ObjectType(int(armour.values["Slot"])) == ObjectType.HELMET: 
+		if armour.slot == ArmourSlot.HEAD: 
 			print("Setting " + armour.values["Name"] + " as a helmet.")
 			self.helmet = armour
-		elif ObjectType(int(armour.values["Slot"])) == ObjectType.CHEST:
+		elif armour.slot == ArmourSlot.CHEST:
 			print("Setting " + armour.values["Name"] + " as chest.")
 			self.chestArmour = armour
-		elif ObjectType(int(armour.values["Slot"])) == ObjectType.LEGS:
+		elif armour.slot == ArmourSlot.LEGS:
 			print("Setting " + armour.values["Name"] + " as a legs.")
 			self.legArmour = armour
 	
@@ -92,20 +92,20 @@ class Character:
 			if PRINT_DETAILED_STATS == True: 
 				print(self.weapon.values["Name"] + " -- " + self.weapon.values["Weight"])
 		
-		if self.helmet.type == ObjectType.HELMET:
+		if self.helmet.type == ObjectType.ARMOUR:
 			weight = int(self.helmet.values["Weight"])
 			equipmentLoad = equipmentLoad + weight
 			if PRINT_DETAILED_STATS == True: 
 				print(self.helmet.values["Name"] + " -- " + self.helmet.values["Weight"])
 		
-		if self.chestArmour.type == ObjectType.CHEST:
+		if self.chestArmour.type == ObjectType.ARMOUR:
 			if PRINT_DETAILED_STATS == True: 
 				print(self.chestArmour.values["Name"] + " -- " + self.chestArmour.values["Weight"])
 				#print(str(self.chestArmour.values["Weight"])+" "+self.chestArmour.values("Name"))
 			weight = int(self.chestArmour.values["Weight"])
 			equipmentLoad = equipmentLoad + weight
 		
-		if self.legArmour.type == ObjectType.LEGS:
+		if self.legArmour.type == ObjectType.ARMOUR:
 			if PRINT_DETAILED_STATS == True: 
 				print(self.legArmour.values["Name"] + " -- " + self.legArmour.values["Weight"])
 				#print(str(self.legArmour.values["Weight"])+" "+self.legArmour.values("Name"))
