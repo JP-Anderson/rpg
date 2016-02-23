@@ -116,16 +116,16 @@ class Character:
 			equipmentLoad = equipmentLoad + weight
 		
 		encumbrancePerc = equipmentLoad/self.maxCarryWeight
-		encumbrance = Encumbrance.MED
+		self.encumbrance = Encumbrance.MED
 		if encumbrancePerc <= EncumbranceThreshold.LOW.value:
-			encumbrance = encumbrance.LOW
+			self.encumbrance = encumbrance.LOW
 		elif encumbrancePerc > EncumbranceThreshold.HIGH.value:
-			encumbrance = encumbrance.HIGH
+			self.encumbrance = encumbrance.HIGH
 		
 		print(str(equipmentLoad) + " CURRENT LOAD")
 		print(str(self.maxCarryWeight) + " MAX LOAD")
 		print(encumbrancePerc)
-		print(str(encumbrance))
+		print(str(self.encumbrance))
 		return equipmentLoad
 	
 	def getDamageResistances(self):
