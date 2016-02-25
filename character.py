@@ -26,7 +26,7 @@ class Character:
 		self.speed = speed
 		self.humanity = humanity
 		
-		self.maxHP = 400+endurance*20
+		self.maxHP = BASE_HEALTH+endurance*20
 		self.hp = self.maxHP
 		self.status = 1
 		self.maxAP = 2*speed+2*agility
