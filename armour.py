@@ -13,7 +13,8 @@ class Armour:
 			self.values[keyRow[i]] = valueRow[i]
 			#print (keyRow[i]+" : "+self.values[keyRow[i
 		
-		self.type = ObjectType(int(self.values["Slot"]))
+		self.type = ObjectType.ARMOUR
+		self.slot = ArmourSlot(int(self.values["Slot"]))
 
 	def toString(self):
 		print(self.values)
