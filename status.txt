@@ -1,0 +1,15 @@
+STATUS EFFECTS
+
+Stunned - cannot make any action for X turns
+Weakness - decreased resistance (or boosted damage) to/from a specific type of damage for X turns
+Slowed - reduced action points
+Accuracy down - decreased accuracy
+Stat hit - decrease to stat for X turns
+
+Resistance - increased resistance to a specific type of damage (physical, burn, tech etc...) for X turns
+Overclocked - boosted action points
+Damage Boost - increased damage for a specific type of damage
+Accuracy boost - increased accuracy 
+Stat boost - boost to stat for X turns
+Buffer - buffer Y damage, or buffer first Y damage for X turns
+
