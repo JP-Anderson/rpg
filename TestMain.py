@@ -63,6 +63,11 @@ class TestMain:
 	orc1.equipArmour(armour[1])
 	orc1.equipArmour(armour[2])
 	
+	print(orc1.getDamageResistances())
+	orc1.getEquipmentLoad()
+
+	#battle = Battle([bob], [orc2, orc1, orc3])
+	
 	battle = Battle([bob], [orc2, orc1, orc3])
 	
 	#for i in range (0,4):
@@ -70,6 +75,5 @@ class TestMain:
 	#	orc1.defend(bob.attack())
 	#	print()
 	#	orc2.defend(bob.attack())
-	
 	
 	
