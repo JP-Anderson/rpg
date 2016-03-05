@@ -12,7 +12,7 @@ class TestMain:
 	print("LOADING!")
 	print("  Loading Characters")
 	print("    - Bob")
-	bob = Character(endurance=25)
+	bob = Character(endurance=25, isPlayable=True)
 	bob.strength = 10
 	bob.agility = 1
 	bob.speed = 2
@@ -20,15 +20,15 @@ class TestMain:
 	
 	print("    - orc1")
 	
-	orc1 = Character(name="orc1")
+	orc1 = Character(name="orc1", isPlayable=False)
 	orc1.agility = 13
 	orc1.speed = 3
 	
-	orc2 = Character(name="orc2")
+	orc2 = Character(name="orc2", isPlayable=False)
 	orc2.speed=12
 	
 	
-	orc3 = Character(name="orc3")
+	orc3 = Character(name="orc3", isPlayable=False)
 	orc3.speed=1
 	
 	
@@ -65,6 +65,9 @@ class TestMain:
 	
 	print(orc1.getDamageResistances())
 	orc1.getEquipmentLoad()
+	
+	orc2.weapon = weapons[4]
+	orc3.weapon = weapons[9]
 
 	#battle = Battle([bob], [orc2, orc1, orc3])
 	

@@ -15,7 +15,8 @@ class Character:
 				endurance=7,
 				agility=7,
 				speed=7,
-				humanity=1.0
+				humanity=1.0,
+				isPlayable=True
 				):
 		self.name = name
 		self.level = level
@@ -25,6 +26,7 @@ class Character:
 		self.agility = agility
 		self.speed = speed
 		self.humanity = humanity
+		self.isPlayable = isPlayable
 		
 		self.maxHP = BASE_HEALTH+endurance*20
 		self.hp = self.maxHP
