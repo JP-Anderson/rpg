@@ -52,7 +52,7 @@ class TestMain:
 	
 	
 	
-	bob.weapon = weapons[2]
+	bob.weapon = weapons[11]
 	bob.equipArmour(armour[3])
 	bob.equipArmour(armour[4])
 	bob.equipArmour(armour[5])

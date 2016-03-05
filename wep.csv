@@ -10,3 +10,5 @@ ID,Name,TID,Class,Type,Weight,Dodgeability,BaseCritC,CritD,BaseD,ShkD,BrnD,PsnD,
 8,Desert Hawk,0,Conv,Pistol,6,0.6,0.02,0.45,175,0,0,0,8,-,2,-,0.5,10,1,4,3,2
 9,Marksman Rifle,2,Conv,Rifle,10,0.5,0.04,0.3,200,0,0,0,7,-,3,-,0.32,6,1,4,3,1
 10,Skorpion,1,Conv,SMG,6,0.7,0.01,0.3,80,0,0,0,4,-,4,-,0.3,30,2,2,3,1
+11,Machete,7,Melee,Sword,4,0.85,0.015,0.35,85,0,0,0,3,4,12,2,-,-,-,3,-,1
+12,Hunting Knife,6,Melee,Knife,3,0.9,0.05,0.45,68,0,0,0,2,5,13,1,-,-,-,3,-,1
