@@ -64,10 +64,8 @@ class Character:
 			#print(str(sum(resistances)))
 			#print(str((1-sum(resistances))*totalDamage))
 			self.hp = self.hp-totalDamage
-<<<<<<< HEAD
-=======
-			print(self.name + " has " + str(self.hp) + "/" + str(self.maxHP) + " left.")
->>>>>>> a361f4c1fbeb7ca9f3258292845092373c2701d3
+
+			#print(self.name + " has " + str(self.hp) + "/" + str(self.maxHP) + " left.")
 			if self.hp < 0:
 				print(self.name + " has died.")
 				self.status = 0
