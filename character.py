@@ -39,7 +39,7 @@ class Character:
 			text = self.name + " attacks with the " + self.weapon.values["Name"] + "!"
 			print("-"*len(text))
 			print(text)
-			return self.weapon.attack()
+			return self.weapon.attack(self.strength, self.dexterity)
 		else: return None
 	
 	def defend(self, attack):
