@@ -12,7 +12,7 @@ class TestMain:
 	print("LOADING!")
 	print("  Loading Characters")
 	print("    - Bob")
-	bob = Character(endurance=25, isPlayable=True)
+	bob = Character(endurance=25, dexterity=50, isPlayable=True)
 	bob.strength = 10
 	bob.agility = 1
 	bob.speed = 2
@@ -52,7 +52,7 @@ class TestMain:
 	
 	
 	
-	bob.weapon = weapons[11]
+	bob.weapon = weapons[3]
 	bob.equipArmour(armour[3])
 	bob.equipArmour(armour[4])
 	bob.equipArmour(armour[5])
