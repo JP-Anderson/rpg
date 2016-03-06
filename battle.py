@@ -43,10 +43,12 @@ class Battle:
 						fighterNames = []
 						for fighter2 in fightersToAttack:
 								fighterNames.append(fighter2.name)
-						choice = Gooey.getUserInputWithList("Who do you want to attack, " + fighter.name + "?", fighterNames)
-								
-						fighterToAttack = fightersToAttack[choice]
-						fighterToAttack.defend(fighter.attack())
+						if len(fightersToAttack) > 0:
+							choice = Gooey.getUserInputWithList("Who do you want to attack, " + fighter.name + "?", fighterNames)
+							fighterToAttack = fightersToAttack[choice]
+							fighterToAttack.defend(fighter.attack())
+						else:
+							pass
 					else: print("...")
 			else:
 				print("Game over!")
