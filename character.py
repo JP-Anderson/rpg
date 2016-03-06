@@ -4,6 +4,7 @@ import random
 from settings import *
 from weapon import Weapon
 from armour import Armour
+from abilitylist import AbilityList
 
 class Character:
 
@@ -27,6 +28,7 @@ class Character:
 		self.speed = speed
 		self.humanity = humanity
 		self.isPlayable = isPlayable
+		self.abilityList = AbilityList()
 		
 		self.maxHP = BASE_HEALTH+endurance*20
 		self.hp = self.maxHP
@@ -144,7 +146,13 @@ class Character:
 				damageResistances[damageType] = damageResistances[damageType] + float(self.legArmour.values[damageType])
 		
 		return damageResistances
-
+	
+	def checkIfDead(self):
+		if self.hp <= 0:
+			return True
+		else: return False
+		
+		
 	# Stats
 	
 	#name = None

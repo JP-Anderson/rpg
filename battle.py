@@ -44,9 +44,25 @@ class Battle:
 						for fighter2 in fightersToAttack:
 								fighterNames.append(fighter2.name)
 						if len(fightersToAttack) > 0:
-							choice = Gooey.getUserInputWithList("Who do you want to attack, " + fighter.name + "?", fighterNames)
-							fighterToAttack = fightersToAttack[choice]
-							fighterToAttack.defend(fighter.attack())
+							
+							if fighter.abilityList.isEmpty():
+								choice = 0
+							else:
+								choices = ["Attack","Ability"]
+								choice = Gooey.getUserInputWithList("What do you want to do, " + fighter.name + "?", choices)
+							
+							if choice == 0:
+								choice = Gooey.getUserInputWithList("Who do you want to attack, " + fighter.name + "?", fighterNames)
+								fighterToAttack = fightersToAttack[choice]
+								fighterToAttack.defend(fighter.attack())
+							elif choice == 1:
+								abilityChoice = Gooey.getUserInputWithList("What ability do you want to use?",fighter.abilityList.returnNameStrings())
+								fighterNames = []
+								for abilityTarget in self.fighters:
+									fighterNames.append(abilityTarget.name)
+								targetChoice = Gooey.getUserInputWithList("Who would you like to target?", fighterNames)
+								fighter.abilityList.useAbility(abilityChoice, self.fighters[targetChoice])
+								
 						else:
 							pass
 					else: print("...")
