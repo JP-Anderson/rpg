@@ -34,9 +34,12 @@ class Battle:
 					if fighter.status>0:
 						fightersToAttack = []
 						if fighter.isPlayable:
-							fightersToAttack = self.enemies
+							for fighter2 in self.enemies:
+								if fighter2.status > 0: fightersToAttack.append(fighter2)
 						else:
-							fightersToAttack = self.friendlies
+							for fighter2 in self.friendlies:
+								if fighter2.status > 0: fightersToAttack.append(fighter2)
+						
 						fighterNames = []
 						for fighter2 in fightersToAttack:
 								fighterNames.append(fighter2.name)
