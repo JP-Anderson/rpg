@@ -14,7 +14,7 @@ class TestMain:
 	print("    - Bob")
 	bob = Character(endurance=25, dexterity=50, isPlayable=True)
 	bob.strength = 10
-	bob.agility = 1
+	bob.agility = 8
 	bob.speed = 2
 	
 	
@@ -58,6 +58,18 @@ class TestMain:
 	bob.equipArmour(armour[5])
 	bob.getEquipmentLoad()
 	
+	bill = Character(endurance=25, dexterity=20, isPlayable=True)
+	bill.strength = 80
+	bill.agility = 19
+	bill.speed = 10
+	bill.name="Bill"
+	
+	bill.weapon = weapons[6]
+	bill.equipArmour(armour[0])
+	bill.equipArmour(armour[1])
+	bill.equipArmour(armour[2])
+	bill.getEquipmentLoad()
+	
 	orc1.weapon = weapons[7]
 	orc1.equipArmour(armour[0])
 	orc1.equipArmour(armour[1])
@@ -71,7 +83,7 @@ class TestMain:
 
 	#battle = Battle([bob], [orc2, orc1, orc3])
 	
-	battle = Battle([bob], [orc2, orc1, orc3])
+	battle = Battle([bob, bill], [orc2, orc1])
 	
 	#for i in range (0,4):
 	#	print()

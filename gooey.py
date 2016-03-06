@@ -17,11 +17,11 @@ class Gooey:
 		print(PROMPT + str(prompt))
 		optionCount = 0
 		for item in list:
-			print(PROMPT + " ("+str(optionCount)+") " + item)
+			print(PROMPT + "("+str(optionCount)+") " + item)
 			optionCount=optionCount+1
 		while(True):
 			try:
-				inputInt = int(input())
+				inputInt = int(input(PROMPT))
 				if inputInt < optionCount and inputInt >= 0: return inputInt
 			except:
 				pass
