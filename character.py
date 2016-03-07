@@ -44,6 +44,11 @@ class Character:
 			return self.weapon.attack(self.strength, self.dexterity)
 		else: return None
 	
+	def die(self):
+		self.status = 0
+		##  :(
+	
+	
 	def defend(self, attack):
 		dodgeRoll = random.random()
 		dodgeChance = 0.3+self.agility*0.02+self.speed*0.01
@@ -72,7 +77,7 @@ class Character:
 			#print(self.name + " has " + str(self.hp) + "/" + str(self.maxHP) + " left.")
 			if self.hp < 0:
 				print(self.name + " has died.")
-				self.status = 0
+				self.die()
 			else: 
 				print(self.name + " has " + str(self.hp) + " left.")
 		

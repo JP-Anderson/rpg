@@ -35,6 +35,8 @@ class EMPBlast(Target):
 		techDamageMultiplier = 1.0-float(target.humanity)
 		totalDamage = baseDamage + 300*techDamageMultiplier
 		target.hp = target.hp-totalDamage
+		if target.hp < 0:
+			target.die()
 		Gooey.printLine(target.name + " was hit with an EMP blast for " + str(totalDamage) + " damage!")
 		if target.checkIfDead():
 			Gooey.printLine(target.name + " has died.")
