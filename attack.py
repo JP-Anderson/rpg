@@ -22,6 +22,8 @@ class Attack:
 			print("CRITICAL HIT ("+str(self.crit)+"x)")
 		else: self.crit = 1.0
 		
+		print("!!!!!!!! Crit multiplier = " + str(self.crit) + " !!!!!!!!")
+		
 		self.baseD = float(self.baseD)*self.crit
 		self.shkD = float(self.shkD)*self.crit
 		self.brnD = float(self.brnD)*self.crit

@@ -1,5 +1,7 @@
 # battle
 from settings import *
+from gooey import Gooey
+import time
 
 class Battle:
 	
@@ -13,7 +15,60 @@ class Battle:
 	def start(self):
 		print("Battle starting!")
 		self.battleStatus = 0 #ACTIVE
-		
+		self.fighterCount = len(self.fighters)
+		self.currentFighterCounter = 0
+		self.currentFighter = self.fighters[self.currentFighterCounter]
+		print("fighter count " + str(self.fighterCount))
+		self.turnCount = 1
+		self.battleLoop()
+	
+	def battleLoop(self):
+		while(True):
+			gameIsRunning = self.checkBothTeamsAlive()
+			if gameIsRunning:
+				print()
+				print()
+				print("We're starting another round")
+				time.sleep(2)
+				for fighter in self.fighters:
+					if fighter.status>0:
+						fightersToAttack = []
+						if fighter.isPlayable:
+							for fighter2 in self.enemies:
+								if fighter2.status > 0: fightersToAttack.append(fighter2)
+						else:
+							for fighter2 in self.friendlies:
+								if fighter2.status > 0: fightersToAttack.append(fighter2)
+						
+						fighterNames = []
+						for fighter2 in fightersToAttack:
+								fighterNames.append(fighter2.name)
+						if len(fightersToAttack) > 0:
+							
+							if fighter.abilityList.isEmpty():
+								choice = 0
+							else:
+								choices = ["Attack","Ability"]
+								choice = Gooey.getUserInputWithList("What do you want to do, " + fighter.name + "?", choices)
+							
+							if choice == 0:
+								choice = Gooey.getUserInputWithList("Who do you want to attack, " + fighter.name + "?", fighterNames)
+								fighterToAttack = fightersToAttack[choice]
+								fighterToAttack.defend(fighter.attack())
+							elif choice == 1:
+								abilityChoice = Gooey.getUserInputWithList("What ability do you want to use?",fighter.abilityList.returnNameStrings())
+								fighterNames = []
+								for abilityTarget in self.fighters:
+									fighterNames.append(abilityTarget.name)
+								targetChoice = Gooey.getUserInputWithList("Who would you like to target?", fighterNames)
+								fighter.abilityList.useAbility(abilityChoice, self.fighters[targetChoice])
+								
+						else:
+							pass
+					else: print("...")
+			else:
+				print("Game over!")
+				break
 	
 	def determineTurnOrder(self):
 		charCount = len(self.fighters)
@@ -43,8 +98,22 @@ class Battle:
 		for char in self.fighters:
 			print(char.speed)
 		
-	
-	
+	def checkBothTeamsAlive(self):
+		print("We're here.")
+		areFriendliesAlive = False
+		areEnemiesAlive = False
+		for friendly in self.friendlies:
+			if friendly.status == 1: 
+				areFriendliesAlive = True
+		for enemy in self.enemies:
+			if enemy.status == 1:
+				areEnemiesAlive = True
+		b = areFriendliesAlive and areEnemiesAlive
+		if b:
+			print("Returning true")
+		else:
+			print("Returning false")
+		return b
 	# per char
 	#	if char is alive
 	#	         and char effects doesnt contain stunned
@@ -55,4 +124,3 @@ class Battle:
 	#			select enemy, attack
 	#		if input = end
 	#			end turn
-	

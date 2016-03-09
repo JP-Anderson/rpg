@@ -5,6 +5,7 @@ from csvreader import CsvReader
 from weapon import Weapon
 from armour import Armour
 from battle import Battle
+from targets import *
 
 
 class TestMain:
@@ -12,24 +13,25 @@ class TestMain:
 	print("LOADING!")
 	print("  Loading Characters")
 	print("    - Bob")
-	bob = Character(endurance=25)
+	bob = Character(endurance=25, dexterity=50, isPlayable=True)
 	bob.strength = 10
-	bob.agility = 1
+	bob.agility = 8
 	bob.speed = 2
+	bob.abilityList.addAbility(MasterHeal())
 	
 	
-	print("    - orc1")
+	print("    - synth1")
 	
-	orc1 = Character(name="orc1")
-	orc1.agility = 13
-	orc1.speed = 3
+	synth1 = Character(name="synth1", isPlayable=False, humanity=0.0)
+	synth1.agility = 13
+	synth1.speed = 3
 	
-	orc2 = Character(name="orc2")
-	orc2.speed=12
+	synth2 = Character(name="synth2", isPlayable=False, humanity=0.3)
+	synth2.speed=12
 	
 	
-	orc3 = Character(name="orc3")
-	orc3.speed=1
+	synth3 = Character(name="synth3", isPlayable=False, humanity=0.6)
+	synth3.speed=1
 	
 	
 	weaponcsv = CsvReader.read("wep.csv")
@@ -52,28 +54,44 @@ class TestMain:
 	
 	
 	
-	bob.weapon = weapons[2]
+	bob.weapon = weapons[3]
 	bob.equipArmour(armour[3])
 	bob.equipArmour(armour[4])
 	bob.equipArmour(armour[5])
 	bob.getEquipmentLoad()
 	
-	orc1.weapon = weapons[7]
-	orc1.equipArmour(armour[0])
-	orc1.equipArmour(armour[1])
-	orc1.equipArmour(armour[2])
+	bill = Character(endurance=25, dexterity=20, isPlayable=True)
+	bill.strength = 80
+	bill.agility = 19
+	bill.speed = 10
+	bill.name="Bill"
 	
-	print(orc1.getDamageResistances())
-	orc1.getEquipmentLoad()
+	bill.weapon = weapons[6]
+	bill.equipArmour(armour[0])
+	bill.equipArmour(armour[1])
+	bill.equipArmour(armour[2])
+	bill.getEquipmentLoad()
+	bill.abilityList.addAbility(EMPBlast())
+	
+	synth1.weapon = weapons[7]
+	synth1.equipArmour(armour[0])
+	synth1.equipArmour(armour[1])
+	synth1.equipArmour(armour[2])
+	
+	print(synth1.getDamageResistances())
+	synth1.getEquipmentLoad()
+	
+	synth2.weapon = weapons[4]
+	synth3.weapon = weapons[9]
 
-	#battle = Battle([bob], [orc2, orc1, orc3])
+	#battle = Battle([bob], [synth2, synth1, synth3])
 	
-	battle = Battle([bob], [orc2, orc1, orc3])
+	battle = Battle([bob, bill], [synth2, synth1])
 	
 	#for i in range (0,4):
 	#	print()
-	#	orc1.defend(bob.attack())
+	#	synth1.defend(bob.attack())
 	#	print()
-	#	orc2.defend(bob.attack())
+	#	synth2.defend(bob.attack())
 	
 	

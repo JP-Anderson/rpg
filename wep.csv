@@ -2,11 +2,13 @@ ID,Name,TID,Class,Type,Weight,Dodgeability,BaseCritC,CritD,BaseD,ShkD,BrnD,PsnD,
 0,Snub nose revolver,0,Conv,Pistol,3,0.6,0.03,0.4,130,0,0,0,2,-,2,-,0.45,6,1,3,5,1
 1,Tactical burst rifle,2,Conv,Rifle,9,0.65,0.02,0.2,250,0,0,0,7,-,3,-,0.522,30,3,4,3,2
 2,Heavy Plasma Rifle,5,Energy,EnergyRifle,12,0.8,0.01,0.1,225,100,50,0,13,-,3,-,Plasma,8,1,5,2,1
-3,Katana,7,Melee,Sword,6,0.8,0.02,0.4,100,0,0,0,8,4,22,1,-,-,-,4,-,2
+3,Katana,7,Melee,Sword,6,0.8,0.02,0.4,100,0,0,0,8,1,22,5,-,-,-,4,-,2
 4,Scattergun,3,Conv,Shotgun,6,0.2,0.01,0.2,80,0,0,0,5,-,3,-,Shells,8,1,3,4,2
-5,Combat Knife,6,Melee,Knife,2,0.9,0.04,0.5,95,0,0,0,1,5,13,1,-,-,-,3,-,1
-6,Enforcer,8,Melee,Club,7,0.85,0.02,0.1,70,50,30,0,10,-,4,-,-,-,-,4,-,1
-7,Energy Sabre,7,Melee,Sword,4,0.75,0.03,0.4,100,30,100,0,2,5,30,2,Battery,100,1,4,5,1
+5,Combat Knife,6,Melee,Knife,2,0.9,0.04,0.5,95,0,0,0,1,1,13,5,-,-,-,3,-,1
+6,Enforcer,8,Melee,Club,7,0.85,0.02,0.1,70,50,30,0,10,5,4,-,-,-,-,4,-,1
+7,Energy Sabre,7,Melee,Sword,4,0.75,0.03,0.4,100,30,100,0,2,-,30,4,Battery,100,1,4,5,1
 8,Desert Hawk,0,Conv,Pistol,6,0.6,0.02,0.45,175,0,0,0,8,-,2,-,0.5,10,1,4,3,2
 9,Marksman Rifle,2,Conv,Rifle,10,0.5,0.04,0.3,200,0,0,0,7,-,3,-,0.32,6,1,4,3,1
 10,Skorpion,1,Conv,SMG,6,0.7,0.01,0.3,80,0,0,0,4,-,4,-,0.3,30,2,2,3,1
+11,Machete,7,Melee,Sword,4,0.85,0.015,0.35,85,0,0,0,3,2,12,4,-,-,-,3,-,1
+12,Hunting Knife,6,Melee,Knife,3,0.9,0.05,0.45,68,0,0,0,2,1,13,5,-,-,-,3,-,1

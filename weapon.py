@@ -19,8 +19,19 @@ class Weapon:
 	def toString(self):
 		print(self.values)
 	
-	def attack(self):
-		attack = Attack(self.values["BaseD"],
+	def attack(self, strength, dexterity):
+		baseDamage = int(self.values["BaseD"])
+		if self.values["StrB"] != "-":
+			strBonusDamage = int(self.values["StrB"]) * strength
+			baseDamage = baseDamage + strBonusDamage
+			print("Adding " + str(strBonusDamage) + " bonus strength damage!!!!!!!!!!!!!!")
+		if self.values["DexB"] != "-":
+			dexBonusDamage = int(self.values["DexB"]) * dexterity
+			baseDamage = baseDamage + dexBonusDamage
+			print("Adding " + str(dexBonusDamage) + " bonus dexterity damage!!!!!!!!!!!!!!")
+		#Need to take weapon skill for this weapon from attacker
+		
+		attack = Attack(baseDamage,
 						self.values["ShkD"],
 						self.values["BrnD"],
 						self.values["PsnD"],

@@ -1,8 +1,10 @@
 #settings
 from enum import Enum
+import random
 
 #logging
 PRINT_DETAILED_STATS = True
+PROMPT = "... "
 
 #fighter statistic variables
 BASE_HEALTH = 400

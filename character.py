@@ -4,6 +4,7 @@ import random
 from settings import *
 from weapon import Weapon
 from armour import Armour
+from abilitylist import AbilityList
 
 class Character:
 
@@ -15,7 +16,8 @@ class Character:
 				endurance=7,
 				agility=7,
 				speed=7,
-				humanity=1.0
+				humanity=1.0,
+				isPlayable=True
 				):
 		self.name = name
 		self.level = level
@@ -25,6 +27,8 @@ class Character:
 		self.agility = agility
 		self.speed = speed
 		self.humanity = humanity
+		self.isPlayable = isPlayable
+		self.abilityList = AbilityList()
 		
 		self.maxHP = BASE_HEALTH+endurance*20
 		self.hp = self.maxHP
@@ -37,8 +41,13 @@ class Character:
 			text = self.name + " attacks with the " + self.weapon.values["Name"] + "!"
 			print("-"*len(text))
 			print(text)
-			return self.weapon.attack()
+			return self.weapon.attack(self.strength, self.dexterity)
 		else: return None
+	
+	def die(self):
+		self.status = 0
+		##  :(
+	
 	
 	def defend(self, attack):
 		dodgeRoll = random.random()
@@ -64,13 +73,11 @@ class Character:
 			#print(str(sum(resistances)))
 			#print(str((1-sum(resistances))*totalDamage))
 			self.hp = self.hp-totalDamage
-<<<<<<< HEAD
-=======
-			print(self.name + " has " + str(self.hp) + "/" + str(self.maxHP) + " left.")
->>>>>>> a361f4c1fbeb7ca9f3258292845092373c2701d3
+
+			#print(self.name + " has " + str(self.hp) + "/" + str(self.maxHP) + " left.")
 			if self.hp < 0:
 				print(self.name + " has died.")
-				self.status = 0
+				self.die()
 			else: 
 				print(self.name + " has " + str(self.hp) + " left.")
 		
@@ -144,7 +151,13 @@ class Character:
 				damageResistances[damageType] = damageResistances[damageType] + float(self.legArmour.values[damageType])
 		
 		return damageResistances
-
+	
+	def checkIfDead(self):
+		if self.hp <= 0:
+			return True
+		else: return False
+		
+		
 	# Stats
 	
 	#name = None
