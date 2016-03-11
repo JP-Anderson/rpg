@@ -1,0 +1,6 @@
+Need to add
+
+Skill trees and skills
+More types of abilities, other than target
+Buffs/debuffs resulting from targets
+Passive skills and traits
