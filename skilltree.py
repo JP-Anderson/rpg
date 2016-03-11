@@ -17,11 +17,21 @@ class SkillTree:
 		self.selectedSkills = []
 	
 	def levelUp(self):
-		self.level = self.level+1
-		Gooey.printLine("Level " + str(self.level) + " " + self.name + " " + " reached")
-		selection = Gooey.getUserInputWithList("Choose the skill for this level",self.skillList[self.level-1])
-		self.selectedSkills.append(self.skillList[self.level-1][selection])
+		if (self.level < self.levelCount):
+			self.level = self.level+1
+			Gooey.printLine("Level " + str(self.level) + " " + self.name + " " + " reached")
+			selection = Gooey.getUserInputWithList("Choose the skill for this level",self.getOptionStrings(self.level))
+			self.selectedSkills.append(self.skillList[self.level-1][selection])
+		else: print("This skill has been maxed out!")
 	
+	
+	def getOptionStrings(self, level):
+		optionStrings = []
+		availableSkillsAtThisLevel = self.skillList[self.level-1]
+		optionStrings.append(availableSkillsAtThisLevel[0].name)
+		optionStrings.append(availableSkillsAtThisLevel[1].name)
+		return optionStrings
+		
 	
 	def toString(self):
 		print(self.name + " Skill Tree")

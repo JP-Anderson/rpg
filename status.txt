@@ -1,11 +1,18 @@
 STATUS EFFECTS
 
 Stunned - cannot make any action for X turns
-Weakness - decreased resistance (or boosted damage) to/from a specific type of damage for X turns
+	requires number of turns, identifier
+Weakness - decreased resistance to a specific type of damage for X turns
+	requires number of turns, identifier, percentage, type(s) of damage
 Slowed - reduced action points
+	requires number of turns, identifier, actionPoints
 Accuracy down - decreased accuracy
+	requires number of turns, identifier, accuracyPercentage
 Stat hit - decrease to stat for X turns
+	requires number of turns, identifier, stat(s), decrease amount
 
+	
+	
 Resistance - increased resistance to a specific type of damage (physical, burn, tech etc...) for X turns
 Overclocked - boosted action points
 Damage Boost - increased damage for a specific type of damage
