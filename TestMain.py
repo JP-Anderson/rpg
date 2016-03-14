@@ -34,7 +34,7 @@ class TestMain:
 	synth3.speed=1
 	
 	
-	weaponcsv = CsvReader.read("wep.csv")
+	weaponcsv = CsvReader.read("data\\wep.csv")
 	keys = weaponcsv[0]
 	numberOfObjects = len(weaponcsv)
 	weapons = []
@@ -43,7 +43,7 @@ class TestMain:
 		weapons.append(Weapon(keys,weaponcsv[i]))
 		print("    - " + str(weaponcsv[i][1]))
 	
-	armourcsv = CsvReader.read("armour.csv")
+	armourcsv = CsvReader.read("data\\armour.csv")
 	keys = armourcsv[0]
 	numberOfObjects = len(armourcsv)
 	armour = []
