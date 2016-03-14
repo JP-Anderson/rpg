@@ -44,7 +44,7 @@ class Battle:
 						for fighter2 in fightersToAttack:
 								fighterNames.append(fighter2.name)
 						if len(fightersToAttack) > 0:
-							
+							Gooey.printTeamStats(self.friendlies, self.enemies)
 							if fighter.abilityList.isEmpty():
 								choice = 0
 							else:
@@ -58,10 +58,15 @@ class Battle:
 							elif choice == 1:
 								abilityChoice = Gooey.getUserInputWithList("What ability do you want to use?",fighter.abilityList.returnNameStrings())
 								fighterNames = []
+								targetableFighters = []
 								for abilityTarget in self.fighters:
-									fighterNames.append(abilityTarget.name)
+									if abilityTarget.status>0: 
+										fighterNames.append(abilityTarget.name)
+										targetableFighters.append(abilityTarget)
+								print(targetableFighters)
+								print(self.fighters)
 								targetChoice = Gooey.getUserInputWithList("Who would you like to target?", fighterNames)
-								fighter.abilityList.useAbility(abilityChoice, self.fighters[targetChoice])
+								fighter.abilityList.useAbility(abilityChoice, targetableFighters[targetChoice])
 								
 						else:
 							pass
