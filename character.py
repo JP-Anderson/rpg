@@ -14,6 +14,7 @@ class Character:
 				strength=7,
 				dexterity=7,
 				endurance=7,
+				intelligence=7,
 				agility=7,
 				speed=7,
 				humanity=1.0,
