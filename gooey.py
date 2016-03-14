@@ -25,3 +25,13 @@ class Gooey:
 				if inputInt < optionCount and inputInt >= 0: return inputInt
 			except:
 				pass
+	
+	def printTeamStats(friendlies, enemies):
+		print(PROMPT + "TEAM 1")
+		for friendly in friendlies:
+			if friendly.status>0: print(NESTEDPROMPT + friendly.name + " " + str(friendly.hp) + "/" + str(friendly.maxHP))
+			else: print(friendly.name + " DEAD")
+		print(PROMPT + "TEAM 2")
+		for enemy in enemies:
+			if enemy.status>0 : print(NESTEDPROMPT + enemy.name + " " + str(enemy.hp) + "/" + str(enemy.maxHP))
+			else: print (enemy.name + " DEAD")
