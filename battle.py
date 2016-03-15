@@ -34,40 +34,43 @@ class Battle:
 					if fighter.status != Status.DEAD:
 						fightersToAttack = []
 						if fighter.isPlayable:
-							for fighter2 in self.enemies:
-								if fighter2.status != Status.DEAD: fightersToAttack.append(fighter2)
+							for potentialTarget in self.enemies:
+								if potentialTarget.status != Status.DEAD: fightersToAttack.append(potentialTarget)
 						else:
-							for fighter2 in self.friendlies:
-								if fighter2.status != Status.DEAD: fightersToAttack.append(fighter2)
+							for potentialTarget in self.friendlies:
+								if potentialTarget.status != Status.DEAD: fightersToAttack.append(potentialTarget)
 						
 						fighterNames = []
 						for fighter2 in fightersToAttack:
 								fighterNames.append(fighter2.name)
 						if len(fightersToAttack) > 0:
 							Gooey.printTeamStats(self.friendlies, self.enemies)
-							if fighter.abilityList.isEmpty():
-								choice = 0
-							else:
-								choices = ["Attack","Ability"]
-								choice = Gooey.getUserInputWithList("What do you want to do, " + fighter.name + "?", choices)
+							choices = ["Attack","Ability","End Turn"]
+							choice = Gooey.getUserInputWithList(fighter.name + " has " + str(fighter.ap) + "/" + str(fighter.maxAP) + " AP remaining.", choices)
 							
-							if choice == 0:
+							if choice == 0: # ATTACK
 								choice = Gooey.getUserInputWithList("Who do you want to attack, " + fighter.name + "?", fighterNames)
 								fighterToAttack = fightersToAttack[choice]
 								fighterToAttack.defend(fighter.attack())
-							elif choice == 1:
-								abilityChoice = Gooey.getUserInputWithList("What ability do you want to use?",fighter.abilityList.returnNameStrings())
-								fighterNames = []
-								targetableFighters = []
-								for abilityTarget in self.fighters:
-									if abilityTarget.status != Status.DEAD: 
-										fighterNames.append(abilityTarget.name)
-										targetableFighters.append(abilityTarget)
-								print(targetableFighters)
-								print(self.fighters)
-								targetChoice = Gooey.getUserInputWithList("Who would you like to target?", fighterNames)
-								fighter.abilityList.useAbility(abilityChoice, targetableFighters[targetChoice])
-								
+							elif choice == 1: # ABILITY
+								abilityNames = fighter.abilityList.returnNameStrings()
+								if len(abilityNames)>0:
+									abilityChoice = Gooey.getUserInputWithList("What ability do you want to use?",abilityNames)
+									fighterNames = []
+									targetableFighters = []
+									for abilityTarget in self.fighters:
+										if abilityTarget.status != Status.DEAD: 
+											fighterNames.append(abilityTarget.name)
+											targetableFighters.append(abilityTarget)
+									print(targetableFighters)
+									print(self.fighters)
+									targetChoice = Gooey.getUserInputWithList("Who would you like to target?", fighterNames)
+									fighter.abilityList.useAbility(abilityChoice, targetableFighters[targetChoice])
+								else: print("No abilities")
+							elif choice == 3: # SKIP
+								pass
+							
+							fighter.ap = fighter.maxAP
 						else:
 							pass
 					else: print("...")
