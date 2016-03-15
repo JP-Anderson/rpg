@@ -52,7 +52,7 @@ class Character:
 	
 	def defend(self, attack):
 		dodgeRoll = random.random()
-		dodgeChance = 0.2+self.agility*0.02+self.speed*0.01
+		dodgeChance = 0.1+self.agility*0.02+self.speed*0.01
 		if PRINT_DETAILED_STATS == True:
 			print(self.name + " needs to roll " + str(dodgeChance) + " or less...")
 			print("Agility " + str(0.02*self.agility) + "  +  Speed " + str(0.01*self.speed) + "  + 0.2")
