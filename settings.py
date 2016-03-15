@@ -10,7 +10,6 @@ NESTEDPROMPT = "...... "
 #fighter statistic variables
 BASE_HEALTH = 400
 STARTING_STAT_POINTS = 35
-AGILITY_AND_SPEED_PER_AP = {0:3, 12:4, 18:5, 21:6, 30:7, 40:8, 48:9, 65:10}
 #                ENDURANCE =  1           5              10             15             20             25             30             35             40
 CARRY_WEIGHTS_BY_ENDURANCE = [15,17,19,21,23,25,27,29,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62]
 #                1   2   3   4    5     6    7  8    9     10    11    12     13   14    15    16

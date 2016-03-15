@@ -34,7 +34,7 @@ class Character:
 		self.maxHP = BASE_HEALTH+endurance*20
 		self.hp = self.maxHP
 		self.status = Status.NORMAL
-		self.maxAP = 2*speed+2*agility
+		self.maxAP = self.setMaxAP()
 		self.ap = self.maxAP
 		
 	def attack(self):
@@ -157,7 +157,17 @@ class Character:
 		if self.hp <= 0:
 			return True
 		else: return False
-		
+	
+	def setMaxAP(self):
+		agilityAndSpeed = self.agility + self.speed
+		if agilityAndSpeed < 12: return 3
+		elif agilityAndSpeed < 18: return 4
+		elif agilityAndSpeed < 21: return 5
+		elif agilityAndSpeed < 30: return 6
+		elif agilityAndSpeed < 40: return 7
+		elif agilityAndSpeed < 52: return 8
+		elif agilityAndSpeed < 65: return 9
+		else: return 10
 		
 	# Stats
 	
