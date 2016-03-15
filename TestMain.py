@@ -11,28 +11,6 @@ from targets import *
 class TestMain:
 
 	print("LOADING!")
-	print("  Loading Characters")
-	print("    - Bob")
-	bob = Character(endurance=25, dexterity=50, isPlayable=True)
-	bob.strength = 10
-	bob.agility = 8
-	bob.speed = 2
-	bob.abilityList.addAbility(MasterHeal())
-	
-	
-	print("    - synth1")
-	
-	synth1 = Character(name="synth1", isPlayable=False, humanity=0.0)
-	synth1.agility = 13
-	synth1.speed = 3
-	
-	synth2 = Character(name="synth2", isPlayable=False, humanity=0.3)
-	synth2.speed=12
-	
-	
-	synth3 = Character(name="synth3", isPlayable=False, humanity=0.6)
-	synth3.speed=1
-	
 	
 	weaponcsv = CsvReader.read("data\\wep.csv")
 	keys = weaponcsv[0]
@@ -51,7 +29,29 @@ class TestMain:
 	for i in range (1,numberOfObjects):
 		armour.append(Armour(keys,armourcsv[i]))
 		print("    - " + str(armourcsv[i][1]))
+		
 	
+	print("  Loading Characters")
+	print("    - Bob")
+	bob = Character(endurance=25, dexterity=50, isPlayable=True)
+	bob.strength = 10
+	bob.agility = 8
+	bob.speed = 2
+	bob.abilityList.addAbility(MasterHeal())
+	
+	
+	print("    - synth1")
+	
+	synth1 = Character(name="synth1", endurance=39, isPlayable=False, humanity=0.0)
+	synth1.agility = 13
+	synth1.speed = 3
+	
+	synth2 = Character(name="synth2", endurance=10, speed=25, agility=25, isPlayable=False, humanity=0.3)
+	synth2.speed=12
+	
+	
+	synth3 = Character(name="synth3", isPlayable=False, humanity=0.6)
+	synth3.speed=1
 	
 	
 	bob.weapon = weapons[3]
