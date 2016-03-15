@@ -50,3 +50,8 @@ class Encumbrance(Enum):
 	LOW = 0
 	MED = 1
 	HIGH = 2
+
+class Status(Enum):
+	DEAD = 0
+	STUNNED = 1
+	NORMAL = 2

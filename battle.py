@@ -29,16 +29,16 @@ class Battle:
 				print()
 				print()
 				print("We're starting another round")
-				time.sleep(2)
+				time.sleep(1)
 				for fighter in self.fighters:
-					if fighter.status>0:
+					if fighter.status != Status.DEAD:
 						fightersToAttack = []
 						if fighter.isPlayable:
 							for fighter2 in self.enemies:
-								if fighter2.status > 0: fightersToAttack.append(fighter2)
+								if fighter2.status != Status.DEAD: fightersToAttack.append(fighter2)
 						else:
 							for fighter2 in self.friendlies:
-								if fighter2.status > 0: fightersToAttack.append(fighter2)
+								if fighter2.status != Status.DEAD: fightersToAttack.append(fighter2)
 						
 						fighterNames = []
 						for fighter2 in fightersToAttack:
@@ -60,7 +60,7 @@ class Battle:
 								fighterNames = []
 								targetableFighters = []
 								for abilityTarget in self.fighters:
-									if abilityTarget.status>0: 
+									if abilityTarget.status != Status.DEAD: 
 										fighterNames.append(abilityTarget.name)
 										targetableFighters.append(abilityTarget)
 								print(targetableFighters)
@@ -108,10 +108,10 @@ class Battle:
 		areFriendliesAlive = False
 		areEnemiesAlive = False
 		for friendly in self.friendlies:
-			if friendly.status == 1: 
+			if friendly.status != Status.DEAD: 
 				areFriendliesAlive = True
 		for enemy in self.enemies:
-			if enemy.status == 1:
+			if enemy.status != Status.DEAD:
 				areEnemiesAlive = True
 		b = areFriendliesAlive and areEnemiesAlive
 		if b:

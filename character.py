@@ -33,7 +33,7 @@ class Character:
 		
 		self.maxHP = BASE_HEALTH+endurance*20
 		self.hp = self.maxHP
-		self.status = 1
+		self.status = Status.NORMAL
 		self.maxAP = 2*speed+2*agility
 		self.ap = self.maxAP
 		
@@ -46,16 +46,16 @@ class Character:
 		else: return None
 	
 	def die(self):
-		self.status = 0
+		self.status = Status.DEAD
 		##  :(
 	
 	
 	def defend(self, attack):
 		dodgeRoll = random.random()
-		dodgeChance = 0.3+self.agility*0.02+self.speed*0.01
+		dodgeChance = 0.2+self.agility*0.02+self.speed*0.01
 		if PRINT_DETAILED_STATS == True:
 			print(self.name + " needs to roll " + str(dodgeChance) + " or less...")
-			print("Agility " + str(0.02*self.agility) + "  +  Speed " + str(0.01*self.speed) + "  + 0.3")
+			print("Agility " + str(0.02*self.agility) + "  +  Speed " + str(0.01*self.speed) + "  + 0.2")
 			print("Rolls " + str("%.3f" % dodgeRoll) + ".")
 		if dodgeRoll <= dodgeChance: print(self.name + " dodges.")
 		else: 
@@ -129,9 +129,9 @@ class Character:
 		encumbrancePerc = equipmentLoad/self.maxCarryWeight
 		self.encumbrance = Encumbrance.MED
 		if encumbrancePerc <= EncumbranceThreshold.LOW.value:
-			self.encumbrance = encumbrance.LOW
+			self.encumbrance = Encumbrance.LOW
 		elif encumbrancePerc > EncumbranceThreshold.HIGH.value:
-			self.encumbrance = encumbrance.HIGH
+			self.encumbrance = Encumbrance.HIGH
 		
 		print(str(equipmentLoad) + " CURRENT LOAD")
 		print(str(self.maxCarryWeight) + " MAX LOAD")
