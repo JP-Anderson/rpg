@@ -65,7 +65,7 @@ class Battle:
 									print(targetableFighters)
 									print(self.fighters)
 									targetChoice = Gooey.getUserInputWithList("Who would you like to target?", fighterNames)
-									fighter.abilityList.useAbility(abilityChoice, targetableFighters[targetChoice])
+									fighter.useAbility(abilityChoice, targetableFighters[targetChoice])
 								else: print("No abilities")
 							elif choice == 3: # SKIP
 								pass

@@ -31,7 +31,7 @@ class Character:
 		self.isPlayable = isPlayable
 		self.abilityList = AbilityList()
 		
-		self.maxHP = BASE_HEALTH+endurance*20
+		self.maxHP = BASE_HEALTH + endurance*20
 		self.hp = self.maxHP
 		self.status = Status.NORMAL
 		self.maxAP = self.setMaxAP()
@@ -42,6 +42,7 @@ class Character:
 			text = self.name + " attacks with the " + self.weapon.values["Name"] + "!"
 			print("-"*len(text))
 			print(text)
+			self.ap = self.ap - int(self.weapon.values["ShotAP"])
 			return self.weapon.attack(self.strength, self.dexterity)
 		else: return None
 	
@@ -83,6 +84,11 @@ class Character:
 				print(self.name + " has " + str(self.hp) + " left.")
 		
 
+	def useAbility(self, abilityChoice, target):
+		self.abilityList.useAbility(abilityChoice, target)
+		abilityCost = self.abilityList.abilities[abilityChoice].apCost
+		self.ap = self.ap - abilityCost
+	
 	def equipArmour(self, armour):
 		if armour.slot == ArmourSlot.HEAD: 
 			print("Setting " + armour.values["Name"] + " as a helmet.")
@@ -93,6 +99,7 @@ class Character:
 		elif armour.slot == ArmourSlot.LEGS:
 			print("Setting " + armour.values["Name"] + " as a legs.")
 			self.legArmour = armour
+	
 	
 	def getEquipmentLoad(self):
 		equipmentLoad = 0
