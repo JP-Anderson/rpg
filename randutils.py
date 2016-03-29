@@ -10,12 +10,12 @@ class RandUtils:
 		
 		rangeStart = 0
 		rangeEnd = 0 + probabilityPerItem
-		endOfList = listLength+1
-		print("end of list " + str(endOfList))
-		for i in [1,2,3]:
+		i = 0
+		while i < listLength:
 			itemRanges.append([rangeStart, rangeEnd])
 			rangeStart = rangeEnd
 			rangeEnd = rangeEnd + probabilityPerItem
+			i = i +1
 		
 		print(itemRanges)
 		roll = random.random()
