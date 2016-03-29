@@ -10,7 +10,9 @@ class RandUtils:
 		
 		rangeStart = 0
 		rangeEnd = 0 + probabilityPerItem
-		for i in range (1,listLength+1):
+		endOfList = listLength+1
+		print("end of list " + str(endOfList))
+		for i in [1,2,3]:
 			itemRanges.append([rangeStart, rangeEnd])
 			rangeStart = rangeEnd
 			rangeEnd = rangeEnd + probabilityPerItem
@@ -18,4 +20,12 @@ class RandUtils:
 		print(itemRanges)
 		roll = random.random()
 		
-
+		selection = -1
+		for range in itemRanges:
+			if roll >= range[0] and roll < range[1]:
+				selection = itemRanges.index(range)
+				print(str(selection))
+				print(str(roll))
+		
+		if selection != -1:	return list[selection]
+		else: return None
