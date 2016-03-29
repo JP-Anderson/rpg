@@ -175,6 +175,14 @@ class Character:
 		elif agilityAndSpeed < 52: return 8
 		elif agilityAndSpeed < 65: return 9
 		else: return 10
+	
+	def printStats(self):
+		print(self.name)
+		print(str(self.level))
+		print(str(self.strength) + " " + str(self.dexterity) + " " + str(self.endurance) + " " + str(self.agility)  + " " + str(self.speed) + " " + str(self.humanity))
+		
+		print("HP " + str(self.hp) + "/" + str(self.maxHP))
+		print("AP " + str(self.ap) + "/" + str(self.maxAP))
 		
 	# Stats
 	

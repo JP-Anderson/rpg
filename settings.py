@@ -54,3 +54,7 @@ class Status(Enum):
 	DEAD = 0
 	STUNNED = 1
 	NORMAL = 2
+
+class MobType(Enum):
+	SYNTH = 0
+	GANG = 1
