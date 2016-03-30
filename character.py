@@ -183,6 +183,8 @@ class Character:
 		
 		print("HP " + str(self.hp) + "/" + str(self.maxHP))
 		print("AP " + str(self.ap) + "/" + str(self.maxAP))
+		if self.weapon != None:
+			print(self.weapon.values["Name"] + " equipped")
 		
 	# Stats
 	

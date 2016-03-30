@@ -1,4 +1,6 @@
 # mob factory class
+import state
+from randutils import RandUtils
 from settings import *
 from character import Character
 
@@ -17,5 +19,8 @@ class MobFactory:
 		for i in range (1,stageCounts[stage]+1):
 			nameString = "synth" + str(i)
 			synth = Character(nameString, endurance=39, agility=20, strength=22, dexterity=25, isPlayable=False, humanity=0.0)
+			possibleWeapons = [0,1,7]
+			selectedWeapon = RandUtils.pickRandomFromList(possibleWeapons)
+			synth.weapon = state.weapons[selectedWeapon]
 			mob.append(synth)
 		return mob
