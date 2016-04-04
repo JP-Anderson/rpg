@@ -1,7 +1,7 @@
 # attack
 import random
 
-from settings import *
+from src.settings import *
 
 class Attack:
 	

@@ -1,5 +1,5 @@
 # GUI class
-from settings import *
+from src.settings import *
 
 class Gooey:
 

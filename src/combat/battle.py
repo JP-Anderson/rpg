@@ -1,6 +1,6 @@
 # battle
-from settings import *
-from gooey import Gooey
+from src.settings import *
+from src.utils.gooey import Gooey
 import time
 
 class Battle:

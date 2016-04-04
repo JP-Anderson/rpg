@@ -1,8 +1,8 @@
 # mob factory class
-import state
-from randutils import RandUtils
-from settings import *
-from character import Character
+import src.utils.state as State
+from src.utils.randutils import RandUtils
+from src.settings import *
+from src.character import Character
 
 class MobFactory:
 
@@ -21,6 +21,6 @@ class MobFactory:
 			synth = Character(nameString, endurance=39, agility=20, strength=22, dexterity=25, isPlayable=False, humanity=0.0)
 			possibleWeapons = [0,1,7]
 			selectedWeapon = RandUtils.pickRandomFromList(possibleWeapons)
-			synth.weapon = state.weapons[selectedWeapon]
+			synth.weapon = State.weapons[selectedWeapon]
 			mob.append(synth)
 		return mob

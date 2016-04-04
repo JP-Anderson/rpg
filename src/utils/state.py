@@ -1,8 +1,9 @@
 # loaded objects
-from csvreader import CsvReader
-from weapon import Weapon
-from armour import Armour
-from targets import *
+from src.utils.csvreader import CsvReader
+from src.items.weapon import Weapon
+from src.items.armour import Armour
+from src.skills.targets import *
+
 
 weapons = []
 armour = []

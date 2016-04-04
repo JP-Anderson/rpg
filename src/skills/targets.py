@@ -1,5 +1,5 @@
 # A spell with a single target
-from gooey import Gooey
+from src.utils.gooey import Gooey
 
 class Target:
 	

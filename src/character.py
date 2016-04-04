@@ -1,10 +1,10 @@
 # character base class
 import random
 
-from settings import *
-from weapon import Weapon
-from armour import Armour
-from abilitylist import AbilityList
+from src.settings import *
+from src.items.weapon import Weapon
+from src.items.armour import Armour
+from src.skills.abilitylist import AbilityList
 
 class Character:
 

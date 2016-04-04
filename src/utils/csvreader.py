@@ -1,7 +1,6 @@
 #csv reader
 
 import csv
-from exampleClass import ExampleClass
 
 class CsvReader:
 
