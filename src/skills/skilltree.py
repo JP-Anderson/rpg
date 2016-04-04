@@ -1,7 +1,7 @@
 # skill class
-from src.settings import *
-from src.settings.gooey import Gooey
-from src.skill import Skill
+from settings import *
+from settings.gooey import Gooey
+from skill import Skill
 
 class SkillTree:
 

@@ -1,15 +1,15 @@
 # loaded objects
-from src.utils.csvreader import CsvReader
-from src.items.weapon import Weapon
-from src.items.armour import Armour
-from src.skills.targets import *
+from utils.csvreader import CsvReader
+from items.weapon import Weapon
+from items.armour import Armour
+from skills.targets import *
 
 
 weapons = []
 armour = []
 
 def loadCSVs():
-	weaponcsv = CsvReader.read("data\\wep.csv")
+	weaponcsv = CsvReader.read("..\\data\\wep.csv")
 	keys = weaponcsv[0]
 	numberOfObjects = len(weaponcsv)
 	print("  Loading Weapons")
@@ -17,7 +17,7 @@ def loadCSVs():
 		weapons.append(Weapon(keys,weaponcsv[i]))
 		print("    - " + str(weaponcsv[i][1]))
 	
-	armourcsv = CsvReader.read("data\\armour.csv")
+	armourcsv = CsvReader.read("..\\data\\armour.csv")
 	keys = armourcsv[0]
 	numberOfObjects = len(armourcsv)
 	print("  Loading Armour")

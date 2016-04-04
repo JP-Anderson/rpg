@@ -1,8 +1,8 @@
 # mob factory class
-import src.utils.state as State
-from src.utils.randutils import RandUtils
-from src.settings import *
-from src.character import Character
+import utils.state as State
+from utils.randutils import RandUtils
+from settings import *
+from character import Character
 
 class MobFactory:
 

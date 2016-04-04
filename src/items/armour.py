@@ -1,5 +1,5 @@
 # base armour class
-from src.settings import *
+from settings import *
 
 class Armour:
 

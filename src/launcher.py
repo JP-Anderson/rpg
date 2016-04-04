@@ -1,11 +1,11 @@
 # game launcher class
-import src.utils.state as State
-from src.combat.mission import Mission
-from src.settings import *
+import utils.state as State
+from combat.mission import Mission
+from settings import *
 
-from src.character import Character
-from src.combat.battle import Battle
-from src.skills.targets import *
+from character import Character
+from combat.battle import Battle
+from skills.targets import *
 
 class Launcher:
 	

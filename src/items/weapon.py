@@ -1,6 +1,6 @@
 # base weapon class
-from src.settings import *
-from src.combat.attack import Attack
+from settings import *
+from combat.attack import Attack
 
 class Weapon:
 

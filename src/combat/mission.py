@@ -1,6 +1,6 @@
 # mission class
-from src.settings import *
-from src.utils.mobfactory import MobFactory
+from settings import *
+from utils.mobfactory import MobFactory
 
 class Mission:
 
