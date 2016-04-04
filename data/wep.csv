@@ -12,3 +12,4 @@ ID,Name,TID,Class,Type,Weight,Dodgeability,BaseCritC,CritD,BaseD,ShkD,BrnD,PsnD,
 10,Skorpion,1,Conv,SMG,6,0.7,0.01,0.3,80,0,0,0,4,-,4,-,0.3,30,2,2,3,1
 11,Machete,7,Melee,Sword,4,0.85,0.015,0.35,85,0,0,0,3,2,12,4,-,-,-,3,-,1
 12,Hunting Knife,6,Melee,Knife,3,0.9,0.05,0.45,68,0,0,0,2,1,13,5,-,-,-,3,-,1
+13,Greatsword,7,Melee,Sword,20,0.58,0.01,0.1,170,0,0,0,34,5,3,-,-,-,-,5,-,1
