@@ -1,2 +1,2 @@
-ID,Name,Weight,StrR,IntR,IntB
-0,LITE Terminal,5,0,15,
+ID,Name,Weight,StrR,IntR,IntB,HumR,HumB
+0,LITE Terminal,5,10,15,0.5,15
