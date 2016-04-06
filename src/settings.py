@@ -3,7 +3,7 @@ from enum import Enum
 import random
 
 #logging
-PRINT_DETAILED_STATS = True
+PRINT_DETAILED_STATS = False
 PROMPT = "... "
 NESTEDPROMPT = "...... "
 

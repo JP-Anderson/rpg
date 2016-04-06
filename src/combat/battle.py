@@ -28,52 +28,59 @@ class Battle:
 			if gameIsRunning:
 				print()
 				print()
-				print("We're starting another round")
+				print("Next round")
 				time.sleep(1)
 				for fighter in self.fighters:
 					if fighter.status != Status.DEAD:
-						fightersToAttack = []
-						if fighter.isPlayable:
-							for potentialTarget in self.enemies:
-								if potentialTarget.status != Status.DEAD: fightersToAttack.append(potentialTarget)
-						else:
-							for potentialTarget in self.friendlies:
-								if potentialTarget.status != Status.DEAD: fightersToAttack.append(potentialTarget)
+						choice = 0
+						while choice != 2:
+							fightersToAttack = []
+							if fighter.isPlayable:
+								for potentialTarget in self.enemies:
+									if potentialTarget.status != Status.DEAD: fightersToAttack.append(potentialTarget)
+							else:
+								for potentialTarget in self.friendlies:
+									if potentialTarget.status != Status.DEAD: fightersToAttack.append(potentialTarget)
 						
-						fighterNames = []
-						for fighter2 in fightersToAttack:
-								fighterNames.append(fighter2.name)
-						if len(fightersToAttack) > 0:
-							Gooey.printTeamStats(self.friendlies, self.enemies)
-							choices = ["Attack","Ability","End Turn"]
-							choice = Gooey.getUserInputWithList(fighter.name + " has " + str(fighter.ap) + "/" + str(fighter.maxAP) + " AP remaining.", choices)
+							fighterNames = []
+							for fighter2 in fightersToAttack:
+									fighterNames.append(fighter2.name)
+							if len(fightersToAttack) > 0:
+								#Gooey.printTeamStats(self.friendlies, self.enemies)
+								choices = ["Attack","Ability","End Turn","Check stats"]
+								Gooey.printLine("It's " + fighter.name + "'s turn")
+								choice = Gooey.getUserInputWithList(fighter.name + " has " + str(fighter.ap) + "/" + str(fighter.maxAP) + " AP remaining.", choices)
 							
-							if choice == 0: # ATTACK
-								choice = Gooey.getUserInputWithList("Who do you want to attack, " + fighter.name + "?", fighterNames)
-								fighterToAttack = fightersToAttack[choice]
-								fighterToAttack.defend(fighter.attack())
-							elif choice == 1: # ABILITY
-								abilityNames = fighter.abilityList.returnNameStrings()
-								if len(abilityNames)>0:
-									abilityChoice = Gooey.getUserInputWithList("What ability do you want to use?",abilityNames)
-									fighterNames = []
-									targetableFighters = []
-									for abilityTarget in self.fighters:
-										if abilityTarget.status != Status.DEAD: 
-											fighterNames.append(abilityTarget.name)
-											targetableFighters.append(abilityTarget)
-									print(targetableFighters)
-									print(self.fighters)
-									targetChoice = Gooey.getUserInputWithList("Who would you like to target?", fighterNames)
-									fighter.useAbility(abilityChoice, targetableFighters[targetChoice])
-								else: print("No abilities")
-							elif choice == 3: # SKIP
-								pass
-							
-							fighter.ap = fighter.maxAP
-						else:
-							pass
-					else: print("...")
+								if choice == 0: # ATTACK
+									choice = Gooey.getUserInputWithList("Who do you want to attack, " + fighter.name + "?", fighterNames)
+									fighterToAttack = fightersToAttack[choice]
+									fighterToAttack.defend(fighter.attack())
+								elif choice == 1: # ABILITY
+									abilityNames = fighter.abilityList.returnNameStrings()
+									if len(abilityNames)>0:
+										abilityChoice = Gooey.getUserInputWithList("What ability do you want to use?",abilityNames)
+										fighterNames = []
+										targetableFighters = []
+										for abilityTarget in self.fighters:
+											if abilityTarget.status != Status.DEAD: 
+												fighterNames.append(abilityTarget.name)
+												targetableFighters.append(abilityTarget)
+										#print(targetableFighters)
+										#print(self.fighters)
+										targetChoice = Gooey.getUserInputWithList("Who would you like to target?", fighterNames)
+										fighter.useAbility(abilityChoice, targetableFighters[targetChoice])
+									else: Gooey.printLine("No abilities")
+								elif choice == 2: # SKIP
+									pass
+								elif choice == 3: 
+									Gooey.printLine("Printing stats")
+									Gooey.printTeamStats(self.friendlies, self.enemies)
+									time.sleep(1)
+									print()
+						fighter.ap = fighter.maxAP
+					else:
+						pass
+				else: print("...")
 			else:
 				print("Game over!")
 				break
