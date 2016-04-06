@@ -59,3 +59,15 @@ class Status(Enum):
 class MobType(Enum):
 	SYNTH = 0
 	GANG = 1
+
+class BuffStat(Enum):
+	HP = 0
+	MAX_HP = 1
+	AP = 2
+	MAX_AP = 3
+	STRENGTH = 4 # weapon damage, item requirement
+	DEXTERITY = 5 # weapon damage, item requirement
+	ENDURANCE = 6 # equipment load, hp
+	AGILITY = 7  # dodge chance
+	SPEED = 8  # turn order, dodge chance
+	HUMANITY = 9
