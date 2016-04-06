@@ -22,3 +22,10 @@ class AbilityList:
 			for ability in self.abilities:
 				strings.append(ability.name)
 		return strings
+	
+	def returnAbilityCosts(self):
+		costs = []
+		if len(self.abilities)>0:
+			for ability in self.abilities:
+				costs.append(ability.apCost)
+		return costs

@@ -53,22 +53,38 @@ class Battle:
 							
 								if choice == 0: # ATTACK
 									choice = Gooey.getUserInputWithList("Who do you want to attack, " + fighter.name + "?", fighterNames)
-									fighterToAttack = fightersToAttack[choice]
-									fighterToAttack.defend(fighter.attack())
+									if fighter.weapon == None:
+										Gooey.printLine("No weapon equipped")										
+									else:
+										weaponAPCost = int(fighter.weapon.values["ShotAP"])
+										if fighter.ap >= weaponAPCost:
+											fighterToAttack = fightersToAttack[choice]
+											fighterToAttack.defend(fighter.attack())
+										else:
+											Gooey.printLine("Not enough AP. " + fighter.weapon.values["Name"] + " requires " + str(weaponAPCost) + " AP to use.")
+											time.sleep(1)
+											Gooey.printLine("")
 								elif choice == 1: # ABILITY
 									abilityNames = fighter.abilityList.returnNameStrings()
+									abilityCosts = fighter.abilityList.returnAbilityCosts()
 									if len(abilityNames)>0:
 										abilityChoice = Gooey.getUserInputWithList("What ability do you want to use?",abilityNames)
-										fighterNames = []
-										targetableFighters = []
-										for abilityTarget in self.fighters:
-											if abilityTarget.status != Status.DEAD: 
-												fighterNames.append(abilityTarget.name)
-												targetableFighters.append(abilityTarget)
-										#print(targetableFighters)
-										#print(self.fighters)
-										targetChoice = Gooey.getUserInputWithList("Who would you like to target?", fighterNames)
-										fighter.useAbility(abilityChoice, targetableFighters[targetChoice])
+										abilityName = abilityNames[abilityChoice]
+										abilityCost = abilityCosts[abilityChoice]
+										
+										if fighter.ap >= abilityCosts[abilityChoice]:
+											fighterNames = []
+											targetableFighters = []
+											for abilityTarget in self.fighters:
+												if abilityTarget.status != Status.DEAD: 
+													fighterNames.append(abilityTarget.name)
+													targetableFighters.append(abilityTarget)
+											#print(targetableFighters)
+											#print(self.fighters)
+											targetChoice = Gooey.getUserInputWithList("Who would you like to target?", fighterNames)
+											fighter.useAbility(abilityChoice, targetableFighters[targetChoice])
+										else: 
+											Gooey.printLine("Not enough AP. " + abilityName + " costs " + str(abilityCost) + " AP to use.") 
 									else: Gooey.printLine("No abilities")
 								elif choice == 2: # SKIP
 									pass
@@ -76,7 +92,7 @@ class Battle:
 									Gooey.printLine("Printing stats")
 									Gooey.printTeamStats(self.friendlies, self.enemies)
 									time.sleep(1)
-									print()
+									Gooey.printLine("")
 						fighter.ap = fighter.maxAP
 					else:
 						pass
