@@ -65,9 +65,10 @@ class BuffStat(Enum):
 	MAX_HP = 1
 	AP = 2
 	MAX_AP = 3
-	STRENGTH = 4 # weapon damage, item requirement
-	DEXTERITY = 5 # weapon damage, item requirement
-	ENDURANCE = 6 # equipment load, hp
-	AGILITY = 7  # dodge chance
-	SPEED = 8  # turn order, dodge chance
-	HUMANITY = 9
+	STRENGTH = 4 # weapon damage, item requirement, ability requirement
+	DEXTERITY = 5 # weapon damage, item requirement, ability requirement
+	ENDURANCE = 6 # equipment load, hp, ability requirement
+	INTELLIGENCE = 7 # terminal requirement, ability requirement
+	AGILITY = 8  # dodge chance, ability requirement
+	SPEED = 9  # turn order, dodge chance, ability requirement
+	HUMANITY = 9 # tech resistance (high humanity), med resistance (low humanity)  

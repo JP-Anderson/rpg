@@ -25,6 +25,7 @@ class Character:
 		self.strength = strength
 		self.dexterity = dexterity
 		self.endurance = endurance
+		self.intelligence = intelligence
 		self.agility = agility
 		self.speed = speed
 		self.humanity = humanity
