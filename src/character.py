@@ -38,6 +38,8 @@ class Character:
 		self.maxAP = self.setMaxAP()
 		self.ap = self.maxAP
 		
+		self.weapon = None
+	
 	def attack(self):
 		if self.weapon != None:
 			text = self.name + " attacks with the " + self.weapon.values["Name"] + "!"

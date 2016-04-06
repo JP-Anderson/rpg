@@ -10,7 +10,7 @@ class Gooey:
 		print((PROMPT + str(string)).upper())
 	
 	def getUserInput(prompt):
-		print(PROMPT + str(prompt))
+		print(PROMPT + PROMPT + str(prompt))
 		return input()
 	
 	def getUserInputWithList(prompt, list):
@@ -21,7 +21,7 @@ class Gooey:
 			optionCount=optionCount+1
 		while(True):
 			try:
-				inputInt = int(input(PROMPT))
+				inputInt = int(input(PROMPT + PROMPT))
 				if inputInt < optionCount and inputInt >= 0: return inputInt
 			except:
 				pass
