@@ -24,3 +24,4 @@ class MobFactory:
 			synth.weapon = State.weapons[selectedWeapon]
 			mob.append(synth)
 		return mob
+		

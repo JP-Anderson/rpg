@@ -24,6 +24,7 @@ class Battle:
 	
 	def battleLoop(self):
 		while(True):
+			print("---------------------- ----------------------- --------- WE'RE HERE --------- ---------------------------- ---------")
 			gameIsRunning = self.checkBothTeamsAlive()
 			if gameIsRunning:
 				print()
@@ -31,7 +32,8 @@ class Battle:
 				print("Next round")
 				time.sleep(1)
 				for fighter in self.fighters:
-					if fighter.status != Status.DEAD:
+					print("We're here at the start of the fighter loop")
+					if fighter.checkIfAlive():
 						choice = 0
 						while choice != 2:
 							fightersToAttack = []
@@ -41,15 +43,17 @@ class Battle:
 							else:
 								for potentialTarget in self.friendlies:
 									if potentialTarget.status != Status.DEAD: fightersToAttack.append(potentialTarget)
-						
+							print("while choice is not 2")
 							fighterNames = []
 							for fighter2 in fightersToAttack:
 									fighterNames.append(fighter2.name)
+							print("about to check if len fighters to attack is over 0")
 							if len(fightersToAttack) > 0:
+								print("len fightersToAttack is over 0")
 								#Gooey.printTeamStats(self.friendlies, self.enemies)
 								choices = ["Attack","Ability","End Turn","Check stats"]
 								Gooey.printLine("It's " + fighter.name + "'s turn")
-								choice = Gooey.getUserInputWithList(fighter.name + " has " + str(fighter.ap) + "/" + str(fighter.maxAP) + " AP remaining.", choices)
+								choice = Gooey.getUserInputWithList(fighter.name + " has " + str(fighter.ap) + " AP remaining.", choices)
 							
 								if choice == 0: # ATTACK
 									choice = Gooey.getUserInputWithList("Who do you want to attack, " + fighter.name + "?", fighterNames)
@@ -87,13 +91,20 @@ class Battle:
 											Gooey.printLine("Not enough AP. " + abilityName + " costs " + str(abilityCost) + " AP to use.") 
 									else: Gooey.printLine("No abilities")
 								elif choice == 2: # SKIP
+									print("You have selected 2")
 									pass
 								elif choice == 3: 
 									Gooey.printLine("Printing stats")
 									Gooey.printTeamStats(self.friendlies, self.enemies)
 									time.sleep(1)
 									Gooey.printLine("")
-						fighter.ap = fighter.maxAP
+							else:
+								break
+							print("We get here!")
+							time.sleep(1)
+						fighter.ap = fighter.ap+fighter.startAP
+						if fighter.ap > fighter.maxAP: fighter.ap = fighter.maxAP
+						print("End of our fighters loop.")
 					else:
 						pass
 				else: print("...")
@@ -103,7 +114,7 @@ class Battle:
 	
 	def determineTurnOrder(self):
 		charCount = len(self.fighters)
-		if PRINT_DETAILED_STATS == True : print("Determining turn order ("+str(charCount)+" characters)")
+		if PRINT_DETAILED_STATS == True: print("Determining turn order ("+str(charCount)+" characters)")
 		characterSpeeds = []
 		
 		print("Presort:")
@@ -134,10 +145,10 @@ class Battle:
 		areFriendliesAlive = False
 		areEnemiesAlive = False
 		for friendly in self.friendlies:
-			if friendly.status != Status.DEAD: 
+			if friendly.checkIfAlive(): 
 				areFriendliesAlive = True
 		for enemy in self.enemies:
-			if enemy.status != Status.DEAD:
+			if enemy.checkIfAlive():
 				areEnemiesAlive = True
 		b = areFriendliesAlive and areEnemiesAlive
 		if b:

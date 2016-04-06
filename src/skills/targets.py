@@ -38,6 +38,6 @@ class EMPBlast(Target):
 		if target.hp < 0:
 			target.die()
 		Gooey.printLine(target.name + " was hit with an EMP blast for " + str(totalDamage) + " damage!")
-		if target.checkIfDead():
+		if target.checkIfAlive() is not True:
 			Gooey.printLine(target.name + " has died.")
 		else: Gooey.printLine(target.name + " has " + str(target.hp) + " health remaining...")
