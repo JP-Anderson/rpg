@@ -4,28 +4,28 @@ from settings import *
 class Gooey:
 
 	def printLine(string):
-		print(PROMPT + str(string))
+		print(str(string))
 	
 	def printMultiLine(lines):
 		for line in lines:
-			print(PROMPT + str(line))
+			print(str(line))
 	
 	def printImportant(string):
-		print((PROMPT + str(string)).upper())
+		print((+ str(string)).upper())
 	
 	def getUserInput(prompt):
-		print(PROMPT + PROMPT + str(prompt))
-		return input()
+		print(str(prompt))
+		return input(PROMPT)
 	
 	def getUserInputWithList(prompt, list):
-		print(PROMPT + str(prompt))
+		print(str(prompt))
 		optionCount = 0
 		for item in list:
-			print(PROMPT + "("+str(optionCount)+") " + item)
+			print("("+str(optionCount)+") " + item)
 			optionCount=optionCount+1
 		while(True):
 			try:
-				inputInt = int(input(PROMPT + PROMPT))
+				inputInt = int(input(PROMPT))
 				if inputInt < optionCount and inputInt >= 0: return inputInt
 			except:
 				pass

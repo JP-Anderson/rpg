@@ -4,16 +4,30 @@ import random
 
 #logging
 PRINT_DETAILED_STATS = True
-PROMPT = "... "
-NESTEDPROMPT = "...... "
+PROMPT = ">> "
 
 #fighter statistic variables
 BASE_HEALTH = 400
-STARTING_STAT_POINTS = 35
+STARTING_STAT_POINTS = 60
+STAT_LIMIT = 70
+
 #                ENDURANCE =  1           5              10             15             20             25             30             35             40
 CARRY_WEIGHTS_BY_ENDURANCE = [15,17,19,21,23,25,27,29,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62]
 #                1   2   3   4    5     6    7  8    9     10    11    12     13   14    15    16
 XP_PER_LEVEL = [100,300,500,1000,1500,2500,4000,6000,8000,10000,12000,16000,20000,32000,43000,50000]
+
+CLASS_NAMES = ["Fighter","Dealer","Hacker"]
+
+CLASS_DESCRIPTIONS = ["The Fighter is skilled with all types of weapons, but you can choose which types of weapons to specialise in.\nThe Fighter can be android or human.",
+						"The Dealer is trained in the production and application of cutting edge battle stimulants and healing medications.\nThe Dealer can be android or human.",
+						"The Hacker utilises jamming and electromagnetic devices to deal tech damage and cast powerful buffs/debuffs on androids.\nThe Hacker must be at least partially android."]
+	
+#              St D  E	I A  Sp H				
+BASE_STATS = [[13,13,11,5,10,8,0.0],  # Fighter
+		[8,11,8,7,12,14,0.1], # Dealer
+		[4,10,8,18,10,10,0.5]]# Hacker
+
+BASE_STAT_NAMES = ["Strength","Dexterity","Endurance","Intelligence","Agility","Speed","Humanity"]
 
 STAT_DESCRIPTIONS = ["Strength is required to wield larger weapons, and gives damage bonuses for strength based weapons.",
 					"Dexterity gives damage bonuses and/or is required for certain finesse based melee weapons.",
@@ -25,7 +39,7 @@ STAT_DESCRIPTIONS = ["Strength is required to wield larger weapons, and gives da
 					"Unlike the other stats, Humanity cannot be changed after being set. The scale below represents the Humanity\n" +
 					"1.0          0.5          0.0\n" +
 					"|-------------|-------------|\n" +
-					"Pure human    Cyborg       Android"]
+					"Pure human    Cyborg       Android"]				
 
 #enums
 class ObjectType(Enum):
@@ -67,6 +81,11 @@ class Status(Enum):
 	DEAD = 0
 	STUNNED = 1
 	NORMAL = 2
+
+class Class(Enum):
+	FIGHTER = 0
+	DEALER = 1
+	HACKER = 2
 
 class MobType(Enum):
 	SYNTH = 0

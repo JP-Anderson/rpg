@@ -2,4 +2,5 @@
 from characterfactory import CharacterFactory
 
 class CFTest:
-	CharacterFactory.startBuilding()
+	cf = CharacterFactory()
+	cf.buildCharacter()
