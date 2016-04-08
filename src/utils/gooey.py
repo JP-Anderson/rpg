@@ -6,6 +6,10 @@ class Gooey:
 	def printLine(string):
 		print(PROMPT + str(string))
 	
+	def printMultiLine(lines):
+		for line in lines:
+			print(PROMPT + str(line))
+	
 	def printImportant(string):
 		print((PROMPT + str(string)).upper())
 	

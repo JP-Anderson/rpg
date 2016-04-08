@@ -3,7 +3,7 @@ from enum import Enum
 import random
 
 #logging
-PRINT_DETAILED_STATS = False
+PRINT_DETAILED_STATS = True
 PROMPT = "... "
 NESTEDPROMPT = "...... "
 
@@ -14,6 +14,18 @@ STARTING_STAT_POINTS = 35
 CARRY_WEIGHTS_BY_ENDURANCE = [15,17,19,21,23,25,27,29,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62]
 #                1   2   3   4    5     6    7  8    9     10    11    12     13   14    15    16
 XP_PER_LEVEL = [100,300,500,1000,1500,2500,4000,6000,8000,10000,12000,16000,20000,32000,43000,50000]
+
+STAT_DESCRIPTIONS = ["Strength is required to wield larger weapons, and gives damage bonuses for strength based weapons.",
+					"Dexterity gives damage bonuses and/or is required for certain finesse based melee weapons.",
+					"Endurance determines a fighters equipment load, and max health",
+					"Intelligence is required for hackers to execute certain abilities and operate terminals.",
+					"Agility determines a fighters ability to effectively dodge incoming attacks.",
+					"Speed determines the order in which fighters take their turn, and slightly affects dodge chance.",
+					"Humanity represents the amount of cybernetic/biological enhancements a fighter hosts.\n" +
+					"Unlike the other stats, Humanity cannot be changed after being set. The scale below represents the Humanity\n" +
+					"1.0          0.5          0.0\n" +
+					"|-------------|-------------|\n" +
+					"Pure human    Cyborg       Android"]
 
 #enums
 class ObjectType(Enum):
