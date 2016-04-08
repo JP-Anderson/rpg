@@ -23,8 +23,8 @@ CLASS_DESCRIPTIONS = ["The Fighter is skilled with all types of weapons, but you
 						"The Hacker utilises jamming and electromagnetic devices to deal tech damage and cast powerful buffs/debuffs on androids.\nThe Hacker must be at least partially android."]
 	
 #              St D  E	I A  Sp H				
-BASE_STATS = [[13,13,11,5,10,8,0.0],  # Fighter
-		[8,11,8,7,12,14,0.1], # Dealer
+BASE_STATS = [[13,13,11,5,10,8,1.0],  # Fighter
+		[8,11,8,7,12,14,0.7], # Dealer
 		[4,10,8,18,10,10,0.5]]# Hacker
 
 BASE_STAT_NAMES = ["Strength","Dexterity","Endurance","Intelligence","Agility","Speed","Humanity"]
@@ -36,10 +36,10 @@ STAT_DESCRIPTIONS = ["Strength is required to wield larger weapons, and gives da
 					"Agility determines a fighters ability to effectively dodge incoming attacks.",
 					"Speed determines the order in which fighters take their turn, and slightly affects dodge chance.",
 					"Humanity represents the amount of cybernetic/biological enhancements a fighter hosts.\n" +
-					"Unlike the other stats, Humanity cannot be changed after being set. The scale below represents the Humanity\n" +
+					"Unlike the other stats, Humanity cannot be changed after being set. The scale below represents Humanity\n\n" +
 					"1.0          0.5          0.0\n" +
 					"|-------------|-------------|\n" +
-					"Pure human    Cyborg       Android"]				
+					"Pure human    Cyborg        You can talk to printers"]				
 
 #enums
 class ObjectType(Enum):

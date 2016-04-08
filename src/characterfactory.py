@@ -11,16 +11,12 @@ class CharacterFactory:
 		self.fighterStats = []
 		self.maxAvailableStatPoints = STARTING_STAT_POINTS
 		self.unusedStatPoints = 0
-		self.buildCharacter()
 		
 	
 	def buildCharacter(self):
 		fighterClass = self.setCharacterNameAndClass()
-		self.setCharacterStats(fighterClass)		
-		
-		time.sleep(5)
-		Gooey.printMultiLine(STAT_DESCRIPTIONS)
-		time.sleep(32)	
+		self.setCharacterStats(fighterClass)
+		self.setCharacterHumanity()
 		
 	def setCharacterNameAndClass(self):
 		classChosen = False
@@ -39,9 +35,9 @@ class CharacterFactory:
 		return name
 	
 	def setCharacterClass(self):
+		Gooey.printEmpty(1)
 		Gooey.printLine("Choose your class. You can select a class to read more information about"
 			+ " the class.")
-		time.sleep(2)
 		prompt = "Select a class out of the following: "
 		options = ["Fighter","Dealer","Hacker"]			
 		classChoice = Gooey.getUserInputWithList(prompt,options)
@@ -49,6 +45,7 @@ class CharacterFactory:
 		return classChoice
 	
 	def setCharacterStats(self, fighterClassID):
+		Gooey.printEmpty(1)
 		Gooey.printMultiLine(["Stats represent the various characteristics of your fighter and determine your characters strengths and weaknesses.",
 			"You can now adjust your starting stats."])
 		
@@ -56,12 +53,22 @@ class CharacterFactory:
 		statsChosen = False
 		while statsChosen == False:
 			self.printAssignableStatPoints()
-			prompt = "Enter the stat for more information or to change the stat:"
+			prompt = "Enter the stat ID for more information or to change the stat:"
 			options = ["Strength: " + str(self.fighterStats[0]),"Dexterity: " + str(self.fighterStats[1]),
 			"Endurance: " + str(self.fighterStats[2]),"Intelligence: " + str(self.fighterStats[3]),
-			"Agility: " + str(self.fighterStats[4]),"Speed: " + str(self.fighterStats[5]),"Humanity: " + str(self.fighterStats[6])]
+			"Agility: " + str(self.fighterStats[4]),"Speed: " + str(self.fighterStats[5]),"CONTINUE"]
 			statChoice = Gooey.getUserInputWithList(prompt, options)
-			self.printNormalStatDetail(statChoice)
+			if self.isInteger(statChoice) and statChoice < 6:
+				time.sleep(1)
+				Gooey.printLine("")
+				self.printNormalStatDetail(statChoice)
+			elif statChoice == 6:
+				if self.unusedStatPoints:
+					Gooey.printLine("You still have unused stat points to assign!")
+					time.sleep(4)
+				else: statsChosen = True
+			
+			Gooey.printLine("")
 	
 	def printAssignableStatPoints(self):
 		Gooey.printLine("You have " + str(self.unusedStatPoints) + " points to assign.")
@@ -100,14 +107,42 @@ class CharacterFactory:
 				Gooey.printLine("Not enough points, please reduce another stat first.") 
 				return False
 		else:
-			self.unusedStatPoints = self.unusedStatPoints + statChange
+			self.unusedStatPoints = self.unusedStatPoints + -statChange
 			return True
 			
 	def newStatIsValidNumber(self, newValue):
 		if newValue <= STAT_LIMIT and newValue >= 1: return True
 		Gooey.printLine("A stat must lie in range 1 to " + str(STAT_LIMIT)) 
 		return False
-		
-		
 	
+	def setCharacterHumanity(self):
+		Gooey.printLine("The last stat to choose is Humanity.")
+		Gooey.printLine(STAT_DESCRIPTIONS[6])
+		#time.sleep(10)
+		humanityChosen = False
+		while humanityChosen == False:
+			Gooey.printLine("You have " + str(self.fighterStats[6]) + " Humanity.")
+			self.printHumanityInformation(self.fighterStats[6])
+			prompt = "Change or confirm your Humanity"
+			options = [0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,"CONTINUE"]			
+			humanityChoice = Gooey.getUserInputWithList(prompt,options)
+			if 0 <= humanityChoice and humanityChoice <= 10:
+				self.fighterStats[6] = options[humanityChoice]
+				pass
+			elif humanityChoice == 11:
+				print("We're here.")
+				humanityChosen = True
+	
+	def printHumanityInformation(self, humanity):
+		if humanity < 0.4:
+			Gooey.printMultiLine(["Tech damage, buffs and abilities are very effective on you.",
+			"Drugs (healing, damage/resistance/stat buffs) have little to no effect on you."])
+		elif humanity < 0.7:
+			Gooey.printMultiLine([
+				"Tech damage, buffs and abilities will have a moderate effect on you.",
+				"Drugs (healing, damage/resistance/stat buffs) will have a moderate effect on you."])
+		elif humanity >= 0.7:
+			Gooey.printMultiLine([
+				"Tech damage, buffs and abilities will have little to no effect on you.",
+				"Drugs (healing, damage/resistance/stat buffs) are very effective on you."])
 			
