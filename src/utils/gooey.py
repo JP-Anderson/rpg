@@ -5,6 +5,9 @@ class Gooey:
 
 	def printLine(string):
 		print(str(string))
+		
+	def printEmpty(emptyLines):
+		for i in range(0,emptyLines): print("")
 	
 	def printMultiLine(lines):
 		for line in lines:
@@ -21,7 +24,7 @@ class Gooey:
 		print(str(prompt))
 		optionCount = 0
 		for item in list:
-			print("("+str(optionCount)+") " + item)
+			print("("+str(optionCount)+") " + str(item))
 			optionCount=optionCount+1
 		while(True):
 			try:
