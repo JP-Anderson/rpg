@@ -12,18 +12,22 @@ class CharacterFactory:
 		self.maxAvailableStatPoints = STARTING_STAT_POINTS
 		self.unusedStatPoints = 0
 		
+		self.name = ""
+		self.charClass = 0
 	
-	def buildCharacter(self):
+	def build(self):
 		fighterClass = self.setCharacterNameAndClass()
 		self.setCharacterStats(fighterClass)
 		self.setCharacterHumanity()
+		return self.buildCharacter()
 		
 	def setCharacterNameAndClass(self):
 		classChosen = False
 		while classChosen == False:
-			name = self.setCharacterName()
-			classChoice = self.setCharacterClass()			
-			finalPrompt = "Are you sure you want to be " + name + " the " + CLASS_NAMES[classChoice]
+			self.name = self.setCharacterName()
+			classChoice = self.setCharacterClass()
+			self.setCharacterClassEnum(classChoice)
+			finalPrompt = "Are you sure you want to be " + self.name + " the " + CLASS_NAMES[classChoice]
 			finalOptions = ["No","Yes"]
 			finalChoice = Gooey.getUserInputWithList(finalPrompt,finalOptions)
 			if finalChoice == 1:
@@ -43,6 +47,11 @@ class CharacterFactory:
 		classChoice = Gooey.getUserInputWithList(prompt,options)
 		Gooey.printLine(CLASS_DESCRIPTIONS[classChoice])
 		return classChoice
+	
+	def setCharacterClassEnum(self, classInt):
+		print("WERE SETTING CLASS TO:")
+		print(str(Class(int(classInt))))
+		self.charClass = Class(int(classInt))
 	
 	def setCharacterStats(self, fighterClassID):
 		Gooey.printEmpty(1)
@@ -145,4 +154,27 @@ class CharacterFactory:
 			Gooey.printMultiLine([
 				"Tech damage, buffs and abilities will have little to no effect on you.",
 				"Drugs (healing, damage/resistance/stat buffs) are very effective on you."])
+	
+	def buildCharacter(self):
+		bob = Character(name = self.name,
+			charClass = self.charClass,
+			strength = self.fighterStats[0],
+			dexterity = self.fighterStats[1],
+			endurance = self.fighterStats[2],
+			intelligence = self.fighterStats[3],
+			agility = self.fighterStats[4],
+			speed = self.fighterStats[5],
+			humanity = self.fighterStats[6],
+			isPlayable = True)
+		
+		if self.charClass == Class.FIGHTER:
+			bob.weapon = State.weapons[3]
+		else: bob.weapon = State.weapons[13]
+		
+		bob.equipArmour(State.armour[3])
+		bob.equipArmour(State.armour[4])
+		bob.equipArmour(State.armour[5])
+		#bob.getEquipmentLoad()
+		
+		return bob
 			

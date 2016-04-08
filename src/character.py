@@ -18,10 +18,12 @@ class Character:
 				agility=7,
 				speed=7,
 				humanity=1.0,
-				isPlayable=True
+				isPlayable=True,
+				charClass = Class.FIGHTER
 				):
 		self.name = name
 		self.level = level
+		self.charClass = charClass
 		self.strength = strength
 		self.dexterity = dexterity
 		self.endurance = endurance
