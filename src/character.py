@@ -52,11 +52,6 @@ class Character:
 			return self.weapon.attack(self.strength, self.dexterity)
 		else: return None
 	
-	def die(self):
-		self.status = Status.DEAD
-		##  :(
-	
-	
 	def defend(self, attack):
 		dodgeRoll = random.random()
 		dodgeChance = 0.1+self.agility*0.02+self.speed*0.01
@@ -167,6 +162,10 @@ class Character:
 				damageResistances[damageType] = damageResistances[damageType] + float(self.legArmour.values[damageType])
 		
 		return damageResistances
+		
+	def die(self):
+		self.status = Status.DEAD
+		##  :(
 	
 	def checkIfAlive(self):
 		if self.status == Status.DEAD: return False
