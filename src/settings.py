@@ -43,6 +43,60 @@ STAT_DESCRIPTIONS = ["Strength is required to wield larger weapons, and gives da
 					"Pure human    Cyborg        You can talk to printers"]				
 
 #enums
+class Class(Enum):
+	FIGHTER = 0
+	DEALER = 1
+	HACKER = 2
+
+class Status(Enum):
+	DEAD = 0
+	STUNNED = 1
+	NORMAL = 2
+
+class Skills(Enum):
+	PISTOL = 0
+	SMG = 1
+	RIFLE = 2
+	SHOTGUN = 3
+	ENERGY_PISTOL = 4
+	ENERGY_RIFLE = 5
+	KNIFE = 6
+	SWORD = 7
+	CLUB = 8
+	WHITE_HAT = 9
+	BLACK_HAT = 10
+	MEDIC = 11
+
+class BuffStat(Enum):
+	HP = 0
+	MAX_HP = 1
+	AP = 2
+	MAX_AP = 3
+	STRENGTH = 4 # weapon damage, item requirement, ability requirement
+	DEXTERITY = 5 # weapon damage, item requirement, ability requirement
+	ENDURANCE = 6 # equipment load, hp, ability requirement
+	INTELLIGENCE = 7 # terminal requirement, ability requirement
+	AGILITY = 8  # dodge chance, ability requirement
+	SPEED = 9  # turn order, dodge chance, ability requirement
+	HUMANITY = 9 # tech resistance (high humanity), med resistance (low humanity)  
+	BASE_DAM = 10
+	SHK_DAM = 11
+	BRN_DAM = 12
+	PSN_DAM = 13
+	BASE_DAMR = 14
+	SHK_DAMR = 15
+	BRN_DAMR = 16
+	PSN_DAMR = 17
+
+class EncumbranceThreshold(Enum):
+	LOW = 0.35
+	HIGH = 0.7
+
+class Encumbrance(Enum):
+	LOW = 0
+	MED = 1
+	HIGH = 2
+
 class ObjectType(Enum):
 	WEAPON = 0
 	ARMOUR = 1
@@ -69,38 +123,7 @@ class WeaponClass(Enum):
 	ENERGY = 1	
 	MELEE = 2
 
-class EncumbranceThreshold(Enum):
-	LOW = 0.35
-	HIGH = 0.7
-
-class Encumbrance(Enum):
-	LOW = 0
-	MED = 1
-	HIGH = 2
-
-class Status(Enum):
-	DEAD = 0
-	STUNNED = 1
-	NORMAL = 2
-
-class Class(Enum):
-	FIGHTER = 0
-	DEALER = 1
-	HACKER = 2
-
 class MobType(Enum):
 	SYNTH = 0
 	GANG = 1
 
-class BuffStat(Enum):
-	HP = 0
-	MAX_HP = 1
-	AP = 2
-	MAX_AP = 3
-	STRENGTH = 4 # weapon damage, item requirement, ability requirement
-	DEXTERITY = 5 # weapon damage, item requirement, ability requirement
-	ENDURANCE = 6 # equipment load, hp, ability requirement
-	INTELLIGENCE = 7 # terminal requirement, ability requirement
-	AGILITY = 8  # dodge chance, ability requirement
-	SPEED = 9  # turn order, dodge chance, ability requirement
-	HUMANITY = 9 # tech resistance (high humanity), med resistance (low humanity)  

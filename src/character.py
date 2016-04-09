@@ -8,6 +8,7 @@ from skills.abilitylist import AbilityList
 
 class Character:
 
+	#Use the utils/CharacterFactory class to create a Character
 	def __init__(self,
 				name="Bob",
 				level=1,
