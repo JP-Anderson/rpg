@@ -15,7 +15,7 @@ class Launcher:
 	State.loadCSVs()
 	m1 = Mission(1,4)
 	m1.toString()
-	"""
+	
 	cf = CharacterFactory()
 	character1 = cf.build()
 	character2 = cf.build()
@@ -47,9 +47,9 @@ class Launcher:
 	bill.equipArmour(State.armour[2])
 	bill.getEquipmentLoad()
 	bill.abilityList.addAbility(EMPBlast())
-	
+	"""
 	for i in range (0,4):
 		print("Battle " + str(i+1))
-		#battle = Battle([character1,character2], m1.stages[i])
-		battle = Battle([bob,bill], m1.stages[i])
+		battle = Battle([character1,character2], m1.stages[i])
+		#battle = Battle([bob,bill], m1.stages[i])
 	

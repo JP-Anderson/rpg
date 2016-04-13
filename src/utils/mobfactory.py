@@ -18,7 +18,7 @@ class MobFactory:
 		mob = []
 		for i in range (1,stageCounts[stage]+1):
 			nameString = "synth" + str(i)
-			synth = Character(nameString, endurance=39, agility=20, strength=22, dexterity=25, isPlayable=False, humanity=0.0)
+			synth = Character(nameString, endurance=19, agility=20, strength=22, dexterity=25, isPlayable=False, humanity=0.0)
 			possibleWeapons = [0,1,7]
 			selectedWeapon = RandUtils.pickRandomFromList(possibleWeapons)
 			synth.weapon = State.weapons[selectedWeapon]
