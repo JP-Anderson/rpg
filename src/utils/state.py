@@ -3,11 +3,13 @@ import os.path
 
 from utils.csvreader import CsvReader
 from items.weapon import Weapon
+from items.terminal import Terminal
 from items.armour import Armour
 from skills.buff import Buff
 
 
 weapons = []
+terminals = []
 armour = []
 buffs = []
 
@@ -19,6 +21,14 @@ def loadCSVs():
 	for i in range (1,numberOfObjects):
 		weapons.append(Weapon(keys,weaponcsv[i]))
 		print("    - " + str(weaponcsv[i][1]))
+		
+	terminalcsv = CsvReader.read(os.path.join("..","data","terminal.csv"))
+	keys = terminalcsv[0]
+	numberOfObjects = len(terminalcsv)
+	print("  Loading Terminals")
+	for i in range (1,numberOfObjects):
+		terminals.append(Terminal(keys,terminalcsv[i]))
+		print("    - " + str(terminalcsv[i][1]))
 	
 	armourcsv = CsvReader.read(os.path.join("..","data","armour.csv"))
 	keys = armourcsv[0]

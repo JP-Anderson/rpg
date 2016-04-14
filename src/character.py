@@ -88,7 +88,6 @@ class Character:
 			else: 
 				print(self.name + " has " + str(self.hp) + " left.")
 		
-
 	def useAbility(self, abilityChoice, target):
 		self.abilityList.useAbility(abilityChoice, target)
 		abilityCost = self.abilityList.abilities[abilityChoice].apCost
@@ -106,11 +105,11 @@ class Character:
 			self.legArmour = armour
 	
 	def equipWeapon(self, weapon):
-		if weapon.type = ObjectType.WEAPON:
+		if weapon.type == ObjectType.WEAPON:
 			self.weapon = weapon
 	
 	def equipTerminal(self, terminal):
-		if terminal.type = ObjectType.TERMINAL:
+		if terminal.type == ObjectType.TERMINAL:
 			self.terminal = terminal
 	
 	def getEquipmentLoad(self):
