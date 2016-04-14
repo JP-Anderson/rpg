@@ -43,6 +43,7 @@ class Character:
 		self.ap = self.startAP
 		
 		self.weapon = None
+		self.terminal = None
 	
 	def attack(self):
 		if self.weapon != None:
@@ -104,6 +105,13 @@ class Character:
 			print("Setting " + armour.values["Name"] + " as a legs.")
 			self.legArmour = armour
 	
+	def equipWeapon(self, weapon):
+		if weapon.type = ObjectType.WEAPON:
+			self.weapon = weapon
+	
+	def equipTerminal(self, terminal):
+		if terminal.type = ObjectType.TERMINAL:
+			self.terminal = terminal
 	
 	def getEquipmentLoad(self):
 		equipmentLoad = 0
