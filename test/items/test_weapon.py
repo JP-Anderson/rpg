@@ -8,31 +8,33 @@ class TestWeapon(unittest.TestCase):
 	def setUp(self):
 		self.weapons = Weapons()
 	
-	def test_item(self):
+	def test_attack_with_strength_bonus(self):
 		sword = self.weapons.list()[13]
-		self.assertEqual(sword.values["ID"], "13")
-		self.assertEqual(sword.values["Name"], "Greatsword")
-		self.assertEqual(sword.values["TID"], "7")
-		self.assertEqual(sword.values["Class"], "Melee")
-		self.assertEqual(sword.values["Type"], "Sword")
-		self.assertEqual(sword.values["Weight"], "20")
-		self.assertEqual(sword.values["Dodgeability"], "0.58")
-		self.assertEqual(sword.values["BaseCritC"], "0.01")
-		self.assertEqual(sword.values["CritD"], "0.1")
-		self.assertEqual(sword.values["BaseD"], "170")
-		self.assertEqual(sword.values["ShkD"], "0")
-		self.assertEqual(sword.values["BrnD"], "0")
-		self.assertEqual(sword.values["PsnD"], "0")
-		self.assertEqual(sword.values["StrR"], "34")
-		self.assertEqual(sword.values["StrB"], "5")
-		self.assertEqual(sword.values["DexR"], "3")
-		self.assertEqual(sword.values["DexB"], "-")
-		self.assertEqual(sword.values["AmmoType"], "-")
-		self.assertEqual(sword.values["ClipSize"], "-")
-		self.assertEqual(sword.values["RndsPerShot"], "-")
-		self.assertEqual(sword.values["ShotAP"], "5")
-		self.assertEqual(sword.values["ReloadAP"], "-")
-		self.assertEqual(sword.values["UpgradeSlots"], "1")
+
+		strength = 10
+		dex = 1
+		attack = sword.attack(strength, dex)
+
+		sword_base_damage = int(sword.values["BaseD"])
+		sword_str_bonus = int(sword.values["StrB"])
+		self.assertEqual(170, sword_base_damage)
+		self.assertEqual(5, sword_str_bonus)
+		self.assertEqual(170 + 5 * strength, attack.baseD)
+
+	def test_attack_with_dexterity_bonus(self):
+		knife = self.weapons.list()[7]
+
+		strength = 10
+		dex = 39
+		attack = knife.attack(strength, dex)
+
+		knife_base_damage = int(knife.values["BaseD"])
+		knife_str_bonus = "-"
+		knife_dex_bonus = int(knife.values["DexB"])
+		self.assertEqual(100, knife_base_damage)
+		self.assertEqual(4, knife_dex_bonus)
+		self.assertEqual("-", knife_str_bonus)
+		self.assertEqual(100 + 4 * dex, attack.baseD)
 
 
 if __name__ == '__main__':
