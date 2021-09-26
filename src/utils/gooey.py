@@ -29,7 +29,7 @@ class Gooey:
 		while(True):
 			try:
 				inputInt = int(input(PROMPT))
-				if inputInt < optionCount and inputInt >= 0: return inputInt
+				if optionCount > inputInt >= 0: return inputInt
 			except:
 				pass
 	

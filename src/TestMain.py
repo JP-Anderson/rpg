@@ -1,27 +1,26 @@
 # Test Main
 from settings import *
 from character import Character
-from csvreader import CsvReader
-from weapon import Weapon
-from armour import Armour
-from battle import Battle
-from targets import *
+from utils.csvreader import CsvReader
+from items.weapon import Weapon
+from items.armour import Armour
+from combat.battle import Battle
+from skills.targets import *
+from utils.loader import Weapons
 
 
 class TestMain:
 
 	print("LOADING!")
 	
-	weaponcsv = CsvReader.read("data\\wep.csv")
-	keys = weaponcsv[0]
-	numberOfObjects = len(weaponcsv)
-	weapons = []
+	weapons = Weapons()
+	wep_list = weapons.list()
+	numberOfObjects = len(wep_list)
 	print("  Loading Weapons")
-	for i in range (1,numberOfObjects):
-		weapons.append(Weapon(keys,weaponcsv[i]))
-		print("    - " + str(weaponcsv[i][1]))
+	for i in range (1, numberOfObjects):
+		print("    - " + str(wep_list[i]))
 	
-	armourcsv = CsvReader.read("data\\armour.csv")
+	armourcsv = CsvReader.read("..\\data\\armour.csv")
 	keys = armourcsv[0]
 	numberOfObjects = len(armourcsv)
 	armour = []
@@ -39,7 +38,7 @@ class TestMain:
 	bob.speed = 2
 	bob.abilityList.addAbility(MasterHeal())	
 	
-	bob.weapon = weapons[3]
+	bob.weapon = wep_list[3]
 	bob.equipArmour(armour[3])
 	bob.equipArmour(armour[4])
 	bob.equipArmour(armour[5])
@@ -51,7 +50,7 @@ class TestMain:
 	bill.speed = 10
 	bill.name="Bill"
 	
-	bill.weapon = weapons[6]
+	bill.weapon = wep_list[6]
 	bill.equipArmour(armour[0])
 	bill.equipArmour(armour[1])
 	bill.equipArmour(armour[2])
@@ -71,7 +70,7 @@ class TestMain:
 	synth3 = Character(name="synth3", isPlayable=False, humanity=0.6)
 	synth3.speed=1
 	
-	synth1.weapon = weapons[7]
+	synth1.weapon = wep_list[7]
 	synth1.equipArmour(armour[0])
 	synth1.equipArmour(armour[1])
 	synth1.equipArmour(armour[2])
@@ -79,8 +78,8 @@ class TestMain:
 	print(synth1.getDamageResistances())
 	synth1.getEquipmentLoad()
 	
-	synth2.weapon = weapons[4]
-	synth3.weapon = weapons[9]
+	synth2.weapon = wep_list[4]
+	synth3.weapon = wep_list[9]
 
 	#battle = Battle([bob], [synth2, synth1, synth3])
 	
