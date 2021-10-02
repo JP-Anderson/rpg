@@ -16,7 +16,6 @@ class TestMission(unittest.TestCase):
 		self.assertEqual(2, len(mission.stages[2]))
 		# Fourth stage has 3 enemies
 		self.assertEqual(3, len(mission.stages[3]))
-		enemies = []
 		for i in range(0, 3):
 			for enemy in mission.stages[i]:
 				self.assertEqual("synth", enemy.name[0:5])
