@@ -7,8 +7,9 @@ class Mission:
 	def __init__(self, missionType, stageCount):
 		self.stages = []
 		self.stageCount = stageCount
+		mob_factory = MobFactory()
 		for i in range(0,self.stageCount):
-			self.stages.append(MobFactory.buildMob(1,i))
+			self.stages.append(mob_factory.buildMob(1,i))
 	
 	def toString(self):
 		for i in range (0, self.stageCount):
