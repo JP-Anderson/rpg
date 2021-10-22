@@ -42,3 +42,28 @@ class Gooey:
 		for enemy in enemies:
 			if enemy.status != Status.DEAD : print(NESTEDPROMPT + enemy.name + " " + str(enemy.hp) + "/" + str(enemy.maxHP))
 			else: print (NESTEDPROMPT + enemy.name + " DEAD")
+
+class MockGooey:
+	
+	def printLine(self, string):
+		print(str(string))
+		
+	def printEmpty(emptyLines):
+		for i in range(0,emptyLines): print("")
+	
+	def printMultiLine(lines):
+		for line in lines:
+			print(str(line))
+	
+	def printImportant(string):
+		print((+ str(string)).upper())
+	
+	def getUserInput(prompt):
+		print(str(prompt))
+		return input(PROMPT)
+	
+	def setGetUserInputWithListResponse(self, i):
+		self.getUserInputWithListResponse = i
+	
+	def getUserInputWithList(self, prompt, list):
+		return self.getUserInputWithListResponse
