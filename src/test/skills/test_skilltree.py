@@ -29,7 +29,17 @@ class TestSkillTree(unittest.TestCase):
 			tree.levelUp()
 			self.assertTrue(tree.is_max_level())
 
-		def test_get_option_strings(self):
+		def test_correct_option_strings_for_each_level(self):
+			mockGUI = MockGooey()
+			mockGUI.setGetUserInputWithListResponse(0)
+			tree = self.get_example_skill_tree(mockGUI)
+			self.assertEqual(['1-1', '1-2'], tree.getOptionStrings())
+			tree.levelUp()
+			self.assertEqual(['2-1', '2-2'], tree.getOptionStrings())
+			tree.levelUp()
+			self.assertEqual([], tree.getOptionStrings())
+		
+		def test_correct_skill_added_for_each_selection(self):
 			skill1Choice1 = Skill("1-1", "Description 1", "Target")
 			skill1Choice2 = Skill("1-2", "Description 2", "Passive")
 			s2c1 = Skill("2-1", "Description 2 1", "Target")
@@ -37,20 +47,15 @@ class TestSkillTree(unittest.TestCase):
 			mockGUI = MockGooey()
 			mockGUI.setGetUserInputWithListResponse(0)
 			tree = SkillTree("Skill Tree Name", "Description", 2, [[skill1Choice1, skill1Choice2],[s2c1, s2c2]], mockGUI)
-			self.assertEqual(['1-1', '1-2'], tree.getOptionStrings())
-			self.assertEqual(0, tree.level)
+			self.assertEqual(0, len(tree.selectedSkills))
 			tree.levelUp()
 			self.assertEqual(1, len(tree.selectedSkills))
 			self.assertEqual(skill1Choice1, tree.selectedSkills[0])
-			self.assertEqual(['2-1', '2-2'], tree.getOptionStrings())
-			self.assertEqual(1, tree.level)
 			# Mock user input to choose the 2nd Skill for the 2nd decision.
 			mockGUI.setGetUserInputWithListResponse(1)
 			tree.levelUp()
 			self.assertEqual(2, len(tree.selectedSkills))
 			self.assertEqual(s2c2, tree.selectedSkills[1])
-			self.assertEqual([], tree.getOptionStrings())
-			self.assertEqual(2, tree.level)
 		
 		def get_example_skill_tree(self, mock_gui):
 			skill1Choice1 = Skill("1-1", "Description 1", "Target")
