@@ -51,9 +51,15 @@ class TestSkillTree(unittest.TestCase):
 			self.assertEqual(['1-1', '1-2'], tree.getOptionStrings())
 			self.assertEqual(0, tree.level)
 			tree.levelUp()
+			self.assertEqual(1, len(tree.selectedSkills))
+			self.assertEqual(skill1Choice1, tree.selectedSkills[0])
 			self.assertEqual(['2-1', '2-2'], tree.getOptionStrings())
 			self.assertEqual(1, tree.level)
+			# Mock user input to choose the 2nd Skill for the 2nd decision.
+			mockGUI.setGetUserInputWithListResponse(1)
 			tree.levelUp()
+			self.assertEqual(2, len(tree.selectedSkills))
+			self.assertEqual(s2c2, tree.selectedSkills[1])
 			self.assertEqual([], tree.getOptionStrings())
 			self.assertEqual(2, tree.level)
 
