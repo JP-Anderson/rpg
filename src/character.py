@@ -79,15 +79,21 @@ class Character:
 			print("Total............." + str(totalDamage))
 			#print(str(sum(resistances)))
 			#print(str((1-sum(resistances))*totalDamage))
-			self.hp = self.hp-totalDamage
-
-			#print(self.name + " has " + str(self.hp) + "/" + str(self.maxHP) + " left.")
-			if self.hp < 0:
+			self.adjust_health(-totalDamage)
+	
+	def adjust_health(self, health_change):
+		if health_change < 0:
+			self.hp = self.hp + health_change
+			if self.hp <= 0:
 				print(self.name + " has died.")
 				self.die()
-			else: 
-				print(self.name + " has " + str(self.hp) + " left.")
-		
+				return
+		else:
+			self.hp = self.hp + health_change
+			if self.hp > self.maxHP:
+				self.hp = self.maxHP
+		print(self.name + " has " + str(self.hp) + "/"+ str(self.maxHP) +" health remaining.")
+	
 	def useAbility(self, abilityChoice, target):
 		self.abilityList.useAbility(abilityChoice, target)
 		abilityCost = self.abilityList.abilities[abilityChoice].apCost
@@ -175,9 +181,9 @@ class Character:
 		self.status = Status.DEAD
 		##  :(
 	
-	def checkIfAlive(self):
-		if self.status == Status.DEAD: return False
-		else: return True
+	def is_dead(self):
+		if self.status == Status.DEAD: return True
+		else: return False
 	
 	def setMaxAP(self):
 		agilityAndSpeed = self.agility + self.speed

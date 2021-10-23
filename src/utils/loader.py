@@ -5,8 +5,8 @@ from items.weapon import  Weapon
 
 class Weapons:
 	
-	def __init__(self):
-		weaponcsv = CsvReader.read("data\\wep.csv")
+	def __init__(self, path_prefix=""):
+		weaponcsv = CsvReader.read(path_prefix+"data\\wep.csv")
 		keys = weaponcsv[0]
 		numberOfObjects = len(weaponcsv)
 		self.weapons = []

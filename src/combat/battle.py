@@ -32,7 +32,7 @@ class Battle:
 			print("Round " + str(roundCounter))
 			time.sleep(1)
 			for fighter in self.fighters:
-				if fighter.checkIfAlive():
+				if not fighter.is_dead():
 					choice = 0
 					while choice != 2:
 						fightersToAttack = []
@@ -137,10 +137,10 @@ class Battle:
 		areFriendliesAlive = False
 		areEnemiesAlive = False
 		for friendly in self.friendlies:
-			if friendly.checkIfAlive(): 
+			if not friendly.is_dead(): 
 				areFriendliesAlive = True
 		for enemy in self.enemies:
-			if enemy.checkIfAlive():
+			if not enemy.is_dead():
 				areEnemiesAlive = True
 		return areFriendliesAlive and areEnemiesAlive
 	# per char
