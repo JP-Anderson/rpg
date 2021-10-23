@@ -6,8 +6,9 @@ from character import Character
 
 class MobFactory:
 
-	def __init__(self):
-		self.weapons_list = Weapons().list()
+	def __init__(self, weapons=None):
+		if weapons: self.weapons_list = weapons.list()
+		else: self.weapons_list = Weapons().list()
 
 	def build_mob(self, area_type, stage):
 		print("Building a mob!")

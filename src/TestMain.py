@@ -6,6 +6,7 @@ from utils.characterfactory import CharacterFactory
 from items.weapon import Weapon
 from items.armour import Armour
 from combat.battle import Battle
+from combat.mission import Mission
 from skills.targets import *
 from utils.loader import Weapons
 
@@ -16,17 +17,17 @@ class TestMain:
 	
 	weapons = Weapons(path_prefix="..\\")
 	wep_list = weapons.list()
-	numberOfObjects = len(wep_list)
+	number_of_objects = len(wep_list)
 	print("  Loading Weapons")
-	for i in range (1, numberOfObjects):
+	for i in range (1, number_of_objects):
 		print("    - " + str(wep_list[i]))
 	
 	armourcsv = CsvReader.read("..\\data\\armour.csv")
 	keys = armourcsv[0]
-	numberOfObjects = len(armourcsv)
+	number_of_objects = len(armourcsv)
 	armour = []
 	print("  Loading Armour")
-	for i in range (1,numberOfObjects):
+	for i in range (1,number_of_objects):
 		armour.append(Armour(keys,armourcsv[i]))
 		print("    - " + str(armourcsv[i][1]))
 		
@@ -51,29 +52,9 @@ class TestMain:
 	c2.getEquipmentLoad()
 	c2.ability_list.add_ability(EMPBlast())
 	
-	print("    - synth1")
 	
-	synth1 = Character(name="synth1", endurance=39, is_playable=False, humanity=0.0)
-	synth1.agility = 13
-	synth1.speed = 3
+	mission = Mission(stage_count=4, weapons=weapons)
 	
-	synth2 = Character(name="synth2", endurance=10, speed=25, agility=25, is_playable=False, humanity=0.3)
-	synth2.speed=12
-	
-	
-	synth3 = Character(name="synth3", is_playable=False, humanity=0.6)
-	synth3.speed=1
-	
-	synth1.weapon = wep_list[7]
-	synth1.equipArmour(armour[0])
-	synth1.equipArmour(armour[1])
-	synth1.equipArmour(armour[2])
-	
-	print(synth1.getDamageResistances())
-	synth1.getEquipmentLoad()
-	
-	synth2.weapon = wep_list[4]
-	synth3.weapon = wep_list[9]
-	
-	battle = Battle([c1, c2], [synth1, synth2])	
+	for stage in mission.stages:
+		battle = Battle([c1, c2], stage)
 	
