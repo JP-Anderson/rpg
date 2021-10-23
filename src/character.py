@@ -41,6 +41,7 @@ class Character:
 		self.maxAP = self.setMaxAP()
 		self.startAP = self.maxAP-2
 		self.ap = self.startAP
+		self.xp = 0
 		
 		self.weapon = None
 		self.terminal = None
@@ -205,7 +206,21 @@ class Character:
 		print("AP " + str(self.ap) + "/" + str(self.maxAP))
 		if self.weapon != None:
 			print(self.weapon.values["Name"] + " equipped")
-		
+	
+	def gain_xp(self, xp):
+		self.xp = self.xp + xp
+		while self.xp >= self.xp_to_next_level():
+			remainder = self.xp - self.xp_to_next_level()
+			print("level up 1")
+			self.level_up()
+			self.xp = remainder
+	
+	def xp_to_next_level(self):
+		return XP_PER_LEVEL[self.level-1]
+	
+	def level_up(self):
+		self.level = self.level + 1
+	
 	# Stats
 	
 	#name = None
