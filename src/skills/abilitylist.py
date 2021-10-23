@@ -27,5 +27,5 @@ class AbilityList:
 		costs = []
 		if len(self.abilities)>0:
 			for ability in self.abilities:
-				costs.append(ability.apCost)
+				costs.append(ability.ap_cost)
 		return costs

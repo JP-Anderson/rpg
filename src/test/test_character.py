@@ -16,14 +16,14 @@ class TestCharacter(unittest.TestCase):
 				humanity=1.0,
 				is_playable=True,
 				char_class = Class.FIGHTER)
-		maxHP = 400 + 7 * 20
-		self.assertEqual(maxHP, character.maxHP)
-		self.assertEqual(maxHP, character.hp)
+		max_hp = 400 + 7 * 20
+		self.assertEqual(max_hp, character.max_hp)
+		self.assertEqual(max_hp, character.hp)
 		
-		character.adjust_health(-maxHP/2)
-		self.assertEqual(maxHP/2, character.hp)
+		character.adjust_health(-max_hp/2)
+		self.assertEqual(max_hp/2, character.hp)
 		
-		character.adjust_health(-maxHP/2+1)
+		character.adjust_health(-max_hp/2+1)
 		self.assertEqual(1, character.hp)
 	
 	def test_is_dead(self):
@@ -39,7 +39,7 @@ class TestCharacter(unittest.TestCase):
 				is_playable=True,
 				char_class = Class.FIGHTER)
 		self.assertFalse(character.is_dead())
-		character.adjust_health(-character.maxHP + 1)
+		character.adjust_health(-character.max_hp + 1)
 		self.assertFalse(character.is_dead())
 		character.adjust_health(-1)
 		self.assertTrue(character.is_dead())

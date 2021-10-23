@@ -48,54 +48,54 @@ class Battle:
 						for f in fighters_to_attack:
 								fighter_names.append(f.name)
 						if len(fighters_to_attack) > 0:
-							#Gooey.printTeamStats(self.friendlies, self.enemies)
+							#Gooey.print_team_stats(self.friendlies, self.enemies)
 							choices = ["Attack","Ability","End Turn","Check stats"]
-							Gooey.printLine("It's " + fighter.name + "'s turn")
-							choice = Gooey.getUserInputWithList(fighter.name + " has " + str(fighter.ap) + " AP remaining.", choices)
+							Gooey.print_line("It's " + fighter.name + "'s turn")
+							choice = Gooey.get_user_input_with_list(fighter.name + " has " + str(fighter.ap) + " AP remaining.", choices)
 						
 							if choice == 0: # ATTACK
-								choice = Gooey.getUserInputWithList("Who do you want to attack, " + fighter.name + "?", fighter_names)
+								choice = Gooey.get_user_input_with_list("Who do you want to attack, " + fighter.name + "?", fighter_names)
 								if fighter.weapon == None:
-									Gooey.printLine("No weapon equipped")										
+									Gooey.print_line("No weapon equipped")										
 								else:
 									weapon_ap_cost = int(fighter.weapon.values["ShotAP"])
 									if fighter.ap >= weapon_ap_cost:
 										fighter_to_attack = fighters_to_attack[choice]
 										fighter_to_attack.defend(fighter.attack())
 									else:
-										Gooey.printLine("Not enough AP. " + fighter.weapon.values["Name"] + " requires " + str(weapon_ap_cost) + " AP to use.")
+										Gooey.print_line("Not enough AP. " + fighter.weapon.values["Name"] + " requires " + str(weapon_ap_cost) + " AP to use.")
 										time.sleep(1)
-										Gooey.printLine("")
+										Gooey.print_line("")
 							elif choice == 1: # ABILITY
 								ability_names = fighter.ability_list.return_name_strings()
 								ability_costs = fighter.ability_list.return_ability_costs()
 								if len(ability_names)>0:
-									ability_choice = Gooey.getUserInputWithList("What ability do you want to use?",ability_names)
+									ability_choice = Gooey.get_user_input_with_list("What ability do you want to use?",ability_names)
 									ability_name = ability_names[ability_choice]
 									ability_cost = ability_costs[ability_choice]
 									
 									if fighter.ap >= ability_costs[ability_choice]:
 										fighter_names = []
-										targetableFighters = []
-										for abilityTarget in self.fighters:
-											if abilityTarget.status != Status.DEAD: 
-												fighter_names.append(abilityTarget.name)
-												targetableFighters.append(abilityTarget)
-										#print(targetableFighters)
+										targetable_fighters = []
+										for ability_target in self.fighters:
+											if ability_target.status != Status.DEAD: 
+												fighter_names.append(ability_target.name)
+												targetable_fighters.append(ability_target)
+										#print(targetable_fighters)
 										#print(self.fighters)
-										targetChoice = Gooey.getUserInputWithList("Who would you like to target?", fighter_names)
-										fighter.use_ability(ability_choice, targetableFighters[targetChoice])
+										targetChoice = Gooey.get_user_input_with_list("Who would you like to target?", fighter_names)
+										fighter.use_ability(ability_choice, targetable_fighters[targetChoice])
 									else: 
-										Gooey.printLine("Not enough AP. " + ability_name + " costs " + str(ability_cost) + " AP to use.") 
-								else: Gooey.printLine("No abilities")
+										Gooey.print_line("Not enough AP. " + ability_name + " costs " + str(ability_cost) + " AP to use.") 
+								else: Gooey.print_line("No abilities")
 							elif choice == 2: # SKIP
 								pass
 							elif choice == 3: 
-								Gooey.printLine("")
-								Gooey.printLine("Printing stats")
-								Gooey.printTeamStats(self.friendlies, self.enemies)
+								Gooey.print_line("")
+								Gooey.print_line("Printing stats")
+								Gooey.print_team_stats(self.friendlies, self.enemies)
 								time.sleep(1)
-								Gooey.printLine("")
+								Gooey.print_line("")
 						else:
 							break
 						time.sleep(1)

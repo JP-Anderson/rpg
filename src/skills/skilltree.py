@@ -20,10 +20,10 @@ class SkillTree:
 		if self.is_max_level():
 			print("This skill has been maxed out!")
 			return
-		selection = self.gui.getUserInputWithList("Choose the skill for this level",self.getOptionStrings())
+		selection = self.gui.get_user_input_with_list("Choose the skill for this level",self.getOptionStrings())
 		self.selectedSkills.append(self.skillList[self.level][selection])
 		self.level = self.level+1
-		self.gui.printLine("Level " + str(self.level) + " " + self.name + " " + " reached")
+		self.gui.print_line("Level " + str(self.level) + " " + self.name + " " + " reached")
 	
 	def is_max_level(self):
 		return self.level >= self.levelCount
@@ -38,9 +38,9 @@ class SkillTree:
 		return optionStrings
 		
 	
-	def toString(self):
+	def to_string(self):
 		print(self.name + " Skill Tree")
 		print("  " + self.description)
 		for skill in self.selectedSkills:
 			print()
-			skill.toString()
+			skill.to_string()

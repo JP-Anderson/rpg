@@ -5,7 +5,7 @@ import random
 #logging
 PRINT_DETAILED_STATS = False
 PROMPT = ">> "
-NESTEDPROMPT = "-->> "
+NESTED_PROMPT = "-->> "
 
 #fighter statistic variables
 BASE_HEALTH = 400

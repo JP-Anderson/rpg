@@ -35,8 +35,8 @@ class Character:
 		self.is_playable = is_playable
 		self.ability_list = AbilityList()
 		
-		self.maxHP = BASE_HEALTH + endurance*20
-		self.hp = self.maxHP
+		self.max_hp = BASE_HEALTH + endurance*20
+		self.hp = self.max_hp
 		self.status = Status.NORMAL
 		self.maxAP = self.setMaxAP()
 		self.startAP = self.maxAP-2
@@ -68,14 +68,14 @@ class Character:
 		else: 
 			#attack.stats()
 			resistances = self.getDamageResistances()
-			phD = (1-resistances["PhysD"])*float(attack.baseD)
-			print("Physical damage..."+str(phD) + " out of " + str(attack.baseD))
-			shD = (1-resistances["ShkD"])*float(attack.shkD)
-			print("Shock damage......"+str(shD) + " out of " + str(attack.shkD))
-			buD = (1-resistances["BrnD"])*float(attack.brnD)
-			print("Burn damage......."+str(buD) + " out of " + str(attack.brnD))
-			poD = (1-resistances["PsnD"])*float(attack.psnD)
-			print("Poison damage....."+str(poD) + " out of " + str(attack.psnD))
+			phD = (1-resistances["PhysD"])*float(attack.base_dmg)
+			print("Physical damage..."+str(phD) + " out of " + str(attack.base_dmg))
+			shD = (1-resistances["ShkD"])*float(attack.shock_dmg)
+			print("Shock damage......"+str(shD) + " out of " + str(attack.shock_dmg))
+			buD = (1-resistances["BrnD"])*float(attack.burn_dmg)
+			print("Burn damage......."+str(buD) + " out of " + str(attack.burn_dmg))
+			poD = (1-resistances["PsnD"])*float(attack.poison_dmg)
+			print("Poison damage....."+str(poD) + " out of " + str(attack.poison_dmg))
 			totalDamage = int(phD + shD + buD + poD)
 			print("Total............." + str(totalDamage))
 			#print(str(sum(resistances)))
@@ -91,13 +91,13 @@ class Character:
 				return
 		else:
 			self.hp = self.hp + health_change
-			if self.hp > self.maxHP:
-				self.hp = self.maxHP
-		print(self.name + " has " + str(self.hp) + "/"+ str(self.maxHP) +" health remaining.")
+			if self.hp > self.max_hp:
+				self.hp = self.max_hp
+		print(self.name + " has " + str(self.hp) + "/"+ str(self.max_hp) +" health remaining.")
 	
 	def use_ability(self, abilityChoice, target):
 		self.ability_list.use_ability(abilityChoice, target)
-		abilityCost = self.ability_list.abilities[abilityChoice].apCost
+		abilityCost = self.ability_list.abilities[abilityChoice].ap_cost
 		self.ap = self.ap - abilityCost
 	
 	def equipArmour(self, armour):
@@ -202,7 +202,7 @@ class Character:
 		print(str(self.level))
 		print(str(self.strength) + " " + str(self.dexterity) + " " + str(self.endurance) + " " + str(self.agility)  + " " + str(self.speed) + " " + str(self.humanity))
 		
-		print("HP " + str(self.hp) + "/" + str(self.maxHP))
+		print("HP " + str(self.hp) + "/" + str(self.max_hp))
 		print("AP " + str(self.ap) + "/" + str(self.maxAP))
 		if self.weapon != None:
 			print(self.weapon.values["Name"] + " equipped")

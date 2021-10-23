@@ -4,18 +4,18 @@ from settings import *
 class Buff:
 
 	def __init__(self, keyRow, valueRow):
-		numberOfKeys = len(keyRow)
+		number_of_keys = len(keyRow)
 		self.values = {}
-		#print (numberOfKeys)
+		#print (number_of_keys)
 		#print(keyRow)
 		#print("VALUE ROW size: " + str(len(valueRow)))
 		#print(valueRow)
-		for i in range(0, numberOfKeys):
+		for i in range(0, number_of_keys):
 			self.values[keyRow[i]] = valueRow[i]
 			#print (keyRow[i]+" : "+self.values[keyRow[i
 
-	def toString(self):
+	def to_string(self):
 		print(self.values)
 	
-	def applyBuff(self):
+	def apply_buff(self):
 		print("Applying buff")

@@ -14,7 +14,7 @@ class Launcher:
 	print("Launching")
 	State.loadCSVs()
 	m1 = Mission(1,4)
-	m1.toString()
+	m1.to_string()
 	
 	cf = CharacterFactory()
 	character1 = cf.build()

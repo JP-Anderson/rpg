@@ -9,12 +9,12 @@ class Terminal:
 	def __init__(self, keyRow, valueRow):
 		#print ("we are here")
 		self.type = ObjectType.TERMINAL
-		numberOfKeys = len(keyRow)
+		number_of_keys = len(keyRow)
 		self.values = {}
-		#print (numberOfKeys)
-		for i in range(0, numberOfKeys):
+		#print (number_of_keys)
+		for i in range(0, number_of_keys):
 			self.values[keyRow[i]] = valueRow[i]
 			#print (keyRow[i]+" : "+self.values[keyRow[i]])
 
-	def toString(self):
+	def to_string(self):
 		print(self.values)

@@ -5,46 +5,46 @@ from settings import *
 
 class Attack:
 	
-	def __init__(self, baseD, shkD, brnD, psnD, dodge, baseCritC, critD, weapon):
-		self.baseD = baseD
-		self.shkD = shkD
-		self.brnD = brnD
-		self.psnD = psnD
+	def __init__(self, base_dmg, shock_dmg, burn_dmg, poison_dmg, dodge, base_critical_chance, critical_dmg, weapon):
+		self.base_dmg = base_dmg
+		self.shock_dmg = shock_dmg
+		self.burn_dmg = burn_dmg
+		self.poison_dmg = poison_dmg
 		self.dodge = dodge
-		self.baseCritC = baseCritC
-		self.critD = critD
+		self.base_critical_chance = base_critical_chance
+		self.critical_dmg = critical_dmg
 		self.weapon = weapon
 		
-		critRoll = random.random()
-		#print("Rolled " + str(critRoll) + " for " + self.baseCritC + ".")
-		if critRoll < float(self.baseCritC)*3:
-			self.crit = 1 + float(self.critD)
-			print("CRITICAL HIT ("+str(self.crit)+"x)")
-		else: self.crit = 1.0
+		critical_roll = random.random()
+		#print("Rolled " + str(critical_roll) + " for " + self.base_critical_chance + ".")
+		if critical_roll < float(self.base_critical_chance)*3:
+			self.critical_chance = 1 + float(self.critical_dmg)
+			print("CRITICAL HIT ("+str(self.critical_chance)+"x)")
+		else: self.critical_chance = 1.0
 		
-		print("!!!!!!!! Crit multiplier = " + str(self.crit) + " !!!!!!!!")
+		print("!!!!!!!! Crit multiplier = " + str(self.critical_chance) + " !!!!!!!!")
 		
-		self.baseD = float(self.baseD)*self.crit
-		self.shkD = float(self.shkD)*self.crit
-		self.brnD = float(self.brnD)*self.crit
-		self.psnD = float(self.psnD)*self.crit
+		self.base_dmg = float(self.base_dmg)*self.critical_chance
+		self.shock_dmg = float(self.shock_dmg)*self.critical_chance
+		self.burn_dmg = float(self.burn_dmg)*self.critical_chance
+		self.poison_dmg = float(self.poison_dmg)*self.critical_chance
 	
 	def stats(self):
 		
 		
 		
 		if PRINT_DETAILED_STATS == True:
-			self.printOutput("PHY",self.baseD)
-			self.printOutput("SHK",self.shkD)
-			self.printOutput("BRN",self.brnD)
-			self.printOutput("PSN",self.psnD)
+			self.print_output("PHY",self.base_dmg)
+			self.print_output("SHK",self.shock_dmg)
+			self.print_output("BRN",self.burn_dmg)
+			self.print_output("PSN",self.poison_dmg)
 			print()
-		self.printOutput("DAMAGE",self.baseD+
-									self.shkD+
-									self.brnD+
-									self.psnD)
+		self.print_output("DAMAGE",self.base_dmg+
+									self.shock_dmg+
+									self.burn_dmg+
+									self.poison_dmg)
 	
-	def printOutput(self, text, value):
+	def print_output(self, text, value):
 		value = str(value)
-		fillerStarCount = 20-len(text)-len(value)
-		print(text+" "+"*"*fillerStarCount+" "+value)
+		filler_star_count = 20-len(text)-len(value)
+		print(text+" "+"*"*filler_star_count+" "+value)

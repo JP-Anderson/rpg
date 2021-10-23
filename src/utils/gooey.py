@@ -3,67 +3,67 @@ from settings import *
 
 class Gooey:
 
-	def printLine(string):
+	def print_line(string):
 		print(str(string))
 		
-	def printEmpty(emptyLines):
+	def print_empty(emptyLines):
 		for i in range(0,emptyLines): print("")
 	
-	def printMultiLine(lines):
+	def print_multi_line(lines):
 		for line in lines:
 			print(str(line))
 	
-	def printImportant(string):
+	def print_important(string):
 		print((+ str(string)).upper())
 	
-	def getUserInput(prompt):
+	def get_user_input(prompt):
 		print(str(prompt))
 		return input(PROMPT)
 	
-	def getUserInputWithList(prompt, list):
+	def get_user_input_with_list(prompt, list):
 		print(str(prompt))
-		optionCount = 0
+		option_count = 0
 		for item in list:
-			print("("+str(optionCount)+") " + str(item))
-			optionCount=optionCount+1
+			print("("+str(option_count)+") " + str(item))
+			option_count=option_count+1
 		while(True):
 			try:
-				inputInt = int(input(PROMPT))
-				if optionCount > inputInt >= 0: return inputInt
+				input_int = int(input(PROMPT))
+				if option_count > input_int >= 0: return input_int
 			except:
 				pass
 	
-	def printTeamStats(friendlies, enemies):
+	def print_team_stats(friendlies, enemies):
 		print(PROMPT + "TEAM 1")
 		for friendly in friendlies:
-			if friendly.status != Status.DEAD: print(NESTEDPROMPT + friendly.name + " " + str(friendly.hp) + "/" + str(friendly.maxHP))
-			else: print(NESTEDPROMPT + friendly.name + " DEAD")
+			if friendly.status != Status.DEAD: print(NESTED_PROMPT + friendly.name + " " + str(friendly.hp) + "/" + str(friendly.max_hp))
+			else: print(NESTED_PROMPT + friendly.name + " DEAD")
 		print(PROMPT + "TEAM 2")
 		for enemy in enemies:
-			if enemy.status != Status.DEAD : print(NESTEDPROMPT + enemy.name + " " + str(enemy.hp) + "/" + str(enemy.maxHP))
-			else: print (NESTEDPROMPT + enemy.name + " DEAD")
+			if enemy.status != Status.DEAD : print(NESTED_PROMPT + enemy.name + " " + str(enemy.hp) + "/" + str(enemy.max_hp))
+			else: print (NESTED_PROMPT + enemy.name + " DEAD")
 
 class MockGooey:
 	
-	def printLine(self, string):
+	def print_line(self, string):
 		print(str(string))
 		
-	def printEmpty(emptyLines):
+	def print_empty(emptyLines):
 		for i in range(0,emptyLines): print("")
 	
-	def printMultiLine(lines):
+	def print_multi_line(lines):
 		for line in lines:
 			print(str(line))
 	
-	def printImportant(string):
+	def print_important(string):
 		print((+ str(string)).upper())
 	
-	def getUserInput(prompt):
+	def get_user_input(prompt):
 		print(str(prompt))
 		return input(PROMPT)
 	
-	def setGetUserInputWithListResponse(self, i):
-		self.getUserInputWithListResponse = i
+	def set_get_user_input_with_list_response(self, i):
+		self.get_user_input_with_list_response = i
 	
-	def getUserInputWithList(self, prompt, list):
-		return self.getUserInputWithListResponse
+	def get_user_input_with_list(self, prompt, list):
+		return self.get_user_input_with_list_response

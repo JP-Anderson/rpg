@@ -17,16 +17,16 @@ class SkillTest:
 	tree = SkillTree("BH", "Hacking", 2, [[DOS,overload],[dBoost,persistence]])
 	
 	print("Level 0")
-	tree.toString()
+	tree.to_string()
 	
 	tree.levelUp()
 	print("Level 1")
-	tree.toString()
+	tree.to_string()
 	
 	
 	tree.levelUp()
 	print("Level 2")
-	tree.toString()
+	tree.to_string()
 	
 	tree.levelUp()
 	

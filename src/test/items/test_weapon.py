@@ -19,7 +19,7 @@ class TestWeapon(unittest.TestCase):
 		sword_str_bonus = int(sword.values["StrB"])
 		self.assertEqual(170, sword_base_damage)
 		self.assertEqual(5, sword_str_bonus)
-		self.assertEqual(170 + 5 * strength, attack.baseD)
+		self.assertEqual(170 + 5 * strength, attack.base_dmg)
 
 	def test_attack_with_dexterity_bonus(self):
 		knife = self.weapons.list()[7]
@@ -34,7 +34,7 @@ class TestWeapon(unittest.TestCase):
 		self.assertEqual(100, knife_base_damage)
 		self.assertEqual(4, knife_dex_bonus)
 		self.assertEqual("-", knife_str_bonus)
-		self.assertEqual(100 + 4 * dex, attack.baseD)
+		self.assertEqual(100 + 4 * dex, attack.base_dmg)
 
 
 if __name__ == '__main__':

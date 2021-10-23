@@ -30,23 +30,23 @@ class CharacterFactory:
 			self.set_character_class_enum(class_choice)
 			final_prompt = "Are you sure you want to be " + self.name + " the " + CLASS_NAMES[class_choice]
 			final_options = ["No","Yes"]
-			final_choice = Gooey.getUserInputWithList(final_prompt, final_options)
+			final_choice = Gooey.get_user_input_with_list(final_prompt, final_options)
 			if final_choice == 1:
 				class_chosen = True
 		return class_choice
 	
 	def set_character_name(self):
-		name = Gooey.getUserInput("Enter character name: ")
+		name = Gooey.get_user_input("Enter character name: ")
 		return name
 	
 	def set_character_class(self):
-		Gooey.printEmpty(1)
-		Gooey.printLine("Choose your class. You can select a class to read more information about"
+		Gooey.print_empty(1)
+		Gooey.print_line("Choose your class. You can select a class to read more information about"
 			+ " the class.")
 		prompt = "Select a class out of the following: "
 		options = ["Fighter","Dealer","Hacker"]			
-		class_choice = Gooey.getUserInputWithList(prompt,options)
-		Gooey.printLine(CLASS_DESCRIPTIONS[class_choice])
+		class_choice = Gooey.get_user_input_with_list(prompt,options)
+		Gooey.print_line(CLASS_DESCRIPTIONS[class_choice])
 		return class_choice
 	
 	def set_character_class_enum(self, classInt):
@@ -55,8 +55,8 @@ class CharacterFactory:
 		self.char_class = Class(int(classInt))
 	
 	def set_character_stats(self, fighterClassID):
-		Gooey.printEmpty(1)
-		Gooey.printMultiLine(["Stats represent the various characteristics of your fighter and determine your characters strengths and weaknesses.",
+		Gooey.print_empty(1)
+		Gooey.print_multi_line(["Stats represent the various characteristics of your fighter and determine your characters strengths and weaknesses.",
 			"You can now adjust your starting stats."])
 		
 		self.fighter_stats = BASE_STATS[fighterClassID]
@@ -67,31 +67,31 @@ class CharacterFactory:
 			options = ["Strength: " + str(self.fighter_stats[0]),"Dexterity: " + str(self.fighter_stats[1]),
 			"Endurance: " + str(self.fighter_stats[2]),"Intelligence: " + str(self.fighter_stats[3]),
 			"Agility: " + str(self.fighter_stats[4]),"Speed: " + str(self.fighter_stats[5]),"CONTINUE"]
-			stat_choice = Gooey.getUserInputWithList(prompt, options)
+			stat_choice = Gooey.get_user_input_with_list(prompt, options)
 			if self.is_integer(stat_choice) and stat_choice < 6:
 				time.sleep(1)
-				Gooey.printLine("")
+				Gooey.print_line("")
 				self.print_normal_stat_detail(stat_choice)
 			elif stat_choice == 6:
 				if self.unused_stat_points:
-					Gooey.printLine("You still have unused stat points to assign!")
+					Gooey.print_line("You still have unused stat points to assign!")
 					time.sleep(4)
 				else: stats_chosen = True
 			
-			Gooey.printLine("")
+			Gooey.print_line("")
 	
 	def print_assignable_stat_points(self):
-		Gooey.printLine("You have " + str(self.unused_stat_points) + " points to assign.")
+		Gooey.print_line("You have " + str(self.unused_stat_points) + " points to assign.")
 		if self.unused_stat_points == 0:
-			Gooey.printLine("You can lower any stat to redistribute the points to another stat.")
+			Gooey.print_line("You can lower any stat to redistribute the points to another stat.")
 	
 	def print_normal_stat_detail(self, statID):
 		statValue = self.fighter_stats[statID]
-		Gooey.printMultiLine([STAT_DESCRIPTIONS[statID],
+		Gooey.print_multi_line([STAT_DESCRIPTIONS[statID],
 			"You have " + str(statValue) + " " + BASE_STAT_NAMES[statID]])
 		
 		prompt = "Enter a new value for this stat, or a non-number to return to the stat list."
-		userInput = Gooey.getUserInput(prompt)
+		userInput = Gooey.get_user_input(prompt)
 		if self.is_integer(userInput):
 			userInput = int(userInput)
 			if self.is_stat_change_valid(statValue, userInput):
@@ -114,7 +114,7 @@ class CharacterFactory:
 				self.unused_stat_points = self.unused_stat_points - stat_change
 				return True
 			else:
-				Gooey.printLine("Not enough points, please reduce another stat first.") 
+				Gooey.print_line("Not enough points, please reduce another stat first.") 
 				return False
 		else:
 			self.unused_stat_points = self.unused_stat_points + -stat_change
@@ -122,20 +122,20 @@ class CharacterFactory:
 			
 	def new_stat_is_valid_number(self, new_value):
 		if new_value <= STAT_LIMIT and new_value >= 1: return True
-		Gooey.printLine("A stat must lie in range 1 to " + str(STAT_LIMIT)) 
+		Gooey.print_line("A stat must lie in range 1 to " + str(STAT_LIMIT)) 
 		return False
 	
 	def set_character_humanity(self):
-		Gooey.printLine("The last stat to choose is Humanity.")
-		Gooey.printLine(STAT_DESCRIPTIONS[6])
+		Gooey.print_line("The last stat to choose is Humanity.")
+		Gooey.print_line(STAT_DESCRIPTIONS[6])
 		#time.sleep(10)
 		humanity_chosen = False
 		while humanity_chosen == False:
-			Gooey.printLine("You have " + str(self.fighter_stats[6]) + " Humanity.")
+			Gooey.print_line("You have " + str(self.fighter_stats[6]) + " Humanity.")
 			self.print_humanity_information(self.fighter_stats[6])
 			prompt = "Change or confirm your Humanity"
 			options = [0.0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9,1.0,"CONTINUE"]			
-			humanityChoice = Gooey.getUserInputWithList(prompt,options)
+			humanityChoice = Gooey.get_user_input_with_list(prompt,options)
 			if 0 <= humanityChoice and humanityChoice <= 10:
 				self.fighter_stats[6] = options[humanityChoice]
 				pass
@@ -145,14 +145,14 @@ class CharacterFactory:
 	
 	def print_humanity_information(self, humanity):
 		if humanity < 0.4:
-			Gooey.printMultiLine(["Tech damage, buffs and abilities are very effective on you.",
+			Gooey.print_multi_line(["Tech damage, buffs and abilities are very effective on you.",
 			"Drugs (healing, damage/resistance/stat buffs) have little to no effect on you."])
 		elif humanity < 0.7:
-			Gooey.printMultiLine([
+			Gooey.print_multi_line([
 				"Tech damage, buffs and abilities will have a moderate effect on you.",
 				"Drugs (healing, damage/resistance/stat buffs) will have a moderate effect on you."])
 		elif humanity >= 0.7:
-			Gooey.printMultiLine([
+			Gooey.print_multi_line([
 				"Tech damage, buffs and abilities will have little to no effect on you.",
 				"Drugs (healing, damage/resistance/stat buffs) are very effective on you."])
 	

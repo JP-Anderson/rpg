@@ -7,29 +7,29 @@ class Weapon:
 	def __init__(self, keyRow, valueRow):
 		#print ("we are here")
 		self.type = ObjectType.WEAPON
-		numberOfKeys = len(keyRow)
+		number_of_keys = len(keyRow)
 		self.values = {}
-		#print (numberOfKeys)
-		for i in range(0, numberOfKeys):
+		#print (number_of_keys)
+		for i in range(0, number_of_keys):
 			self.values[keyRow[i]] = valueRow[i]
 			#print (keyRow[i]+" : "+self.values[keyRow[i]])
 
-	def toString(self):
+	def to_string(self):
 		print(self.values)
 	
 	def attack(self, strength, dexterity):
-		baseDamage = int(self.values["BaseD"])
+		base_dmg = int(self.values["BaseD"])
 		if self.values["StrB"] != "-":
-			strBonusDamage = int(self.values["StrB"]) * strength
-			baseDamage = baseDamage + strBonusDamage
-			print("Adding " + str(strBonusDamage) + " bonus strength damage!!!!!!!!!!!!!!")
+			str_bonus_dmg = int(self.values["StrB"]) * strength
+			base_dmg = base_dmg + str_bonus_dmg
+			print("Adding " + str(str_bonus_dmg) + " bonus strength damage!!!!!!!!!!!!!!")
 		if self.values["DexB"] != "-":
-			dexBonusDamage = int(self.values["DexB"]) * dexterity
-			baseDamage = baseDamage + dexBonusDamage
-			print("Adding " + str(dexBonusDamage) + " bonus dexterity damage!!!!!!!!!!!!!!")
+			dex_bonus_dmg = int(self.values["DexB"]) * dexterity
+			base_dmg = base_dmg + dex_bonus_dmg
+			print("Adding " + str(dex_bonus_dmg) + " bonus dexterity damage!!!!!!!!!!!!!!")
 		#Need to take weapon skill for this weapon from attacker
 		
-		attack = Attack(baseDamage,
+		attack = Attack(base_dmg,
 						self.values["ShkD"],
 						self.values["BrnD"],
 						self.values["PsnD"],

@@ -9,9 +9,9 @@ class Mission:
 		self.stageCount = stageCount
 		mob_factory = MobFactory()
 		for i in range(0,self.stageCount):
-			self.stages.append(mob_factory.buildMob(1,i))
+			self.stages.append(mob_factory.build_mob(1,i))
 	
-	def toString(self):
+	def to_string(self):
 		for i in range (0, self.stageCount):
 			for enemy in self.stages[i]:
 				enemy.printStats()
