@@ -5,11 +5,11 @@ import time
 
 class Battle:
 	
-	def __init__(self, friendlyCharacters, enemyCharacters):
-		self.friendlies = friendlyCharacters
-		self.enemies = enemyCharacters
-		self.fighters = friendlyCharacters + enemyCharacters
-		self.determineTurnOrder()
+	def __init__(self, friendly_characters, enemy_characters):
+		self.friendlies = friendly_characters
+		self.enemies = enemy_characters
+		self.fighters = friendly_characters + enemy_characters
+		self.determine_turn_order()
 		self.start()
 	
 	def start(self):
@@ -20,73 +20,73 @@ class Battle:
 		self.currentFighter = self.fighters[self.currentFighterCounter]
 		print("fighter count " + str(self.fighterCount))
 		self.turnCount = 1
-		self.battleLoop()
+		self.start_loop()
 		if self.friendlies_alive():
 			print("You win!")
 	
-	def battleLoop(self):
-		roundCounter = 0
-		gameIsRunning = self.checkBothTeamsAlive()
-		while(gameIsRunning):
+	def start_loop(self):
+		round_count = 0
+		battle_is_ongoing = self.check_both_teams_alive()
+		while(battle_is_ongoing):
 			print()
 			print()
-			roundCounter = roundCounter + 1
-			print("Round " + str(roundCounter))
+			round_count = round_count + 1
+			print("Round " + str(round_count))
 			time.sleep(1)
 			for fighter in self.fighters:
 				if not fighter.is_dead():
 					choice = 0
 					while choice != 2:
-						fightersToAttack = []
+						fighters_to_attack = []
 						if fighter.is_playable:
-							for potentialTarget in self.enemies:
-								if potentialTarget.status != Status.DEAD: fightersToAttack.append(potentialTarget)
+							for potential_target in self.enemies:
+								if potential_target.status != Status.DEAD: fighters_to_attack.append(potential_target)
 						else:
-							for potentialTarget in self.friendlies:
-								if potentialTarget.status != Status.DEAD: fightersToAttack.append(potentialTarget)
-						fighterNames = []
-						for fighter2 in fightersToAttack:
-								fighterNames.append(fighter2.name)
-						if len(fightersToAttack) > 0:
+							for potential_target in self.friendlies:
+								if potential_target.status != Status.DEAD: fighters_to_attack.append(potential_target)
+						fighter_names = []
+						for f in fighters_to_attack:
+								fighter_names.append(f.name)
+						if len(fighters_to_attack) > 0:
 							#Gooey.printTeamStats(self.friendlies, self.enemies)
 							choices = ["Attack","Ability","End Turn","Check stats"]
 							Gooey.printLine("It's " + fighter.name + "'s turn")
 							choice = Gooey.getUserInputWithList(fighter.name + " has " + str(fighter.ap) + " AP remaining.", choices)
 						
 							if choice == 0: # ATTACK
-								choice = Gooey.getUserInputWithList("Who do you want to attack, " + fighter.name + "?", fighterNames)
+								choice = Gooey.getUserInputWithList("Who do you want to attack, " + fighter.name + "?", fighter_names)
 								if fighter.weapon == None:
 									Gooey.printLine("No weapon equipped")										
 								else:
-									weaponAPCost = int(fighter.weapon.values["ShotAP"])
-									if fighter.ap >= weaponAPCost:
-										fighterToAttack = fightersToAttack[choice]
-										fighterToAttack.defend(fighter.attack())
+									weapon_ap_cost = int(fighter.weapon.values["ShotAP"])
+									if fighter.ap >= weapon_ap_cost:
+										fighter_to_attack = fighters_to_attack[choice]
+										fighter_to_attack.defend(fighter.attack())
 									else:
-										Gooey.printLine("Not enough AP. " + fighter.weapon.values["Name"] + " requires " + str(weaponAPCost) + " AP to use.")
+										Gooey.printLine("Not enough AP. " + fighter.weapon.values["Name"] + " requires " + str(weapon_ap_cost) + " AP to use.")
 										time.sleep(1)
 										Gooey.printLine("")
 							elif choice == 1: # ABILITY
-								abilityNames = fighter.abilityList.returnNameStrings()
-								abilityCosts = fighter.abilityList.returnAbilityCosts()
-								if len(abilityNames)>0:
-									abilityChoice = Gooey.getUserInputWithList("What ability do you want to use?",abilityNames)
-									abilityName = abilityNames[abilityChoice]
-									abilityCost = abilityCosts[abilityChoice]
+								ability_names = fighter.ability_list.return_name_strings()
+								ability_costs = fighter.ability_list.return_ability_costs()
+								if len(ability_names)>0:
+									ability_choice = Gooey.getUserInputWithList("What ability do you want to use?",ability_names)
+									ability_name = ability_names[ability_choice]
+									ability_cost = ability_costs[ability_choice]
 									
-									if fighter.ap >= abilityCosts[abilityChoice]:
-										fighterNames = []
+									if fighter.ap >= ability_costs[ability_choice]:
+										fighter_names = []
 										targetableFighters = []
 										for abilityTarget in self.fighters:
 											if abilityTarget.status != Status.DEAD: 
-												fighterNames.append(abilityTarget.name)
+												fighter_names.append(abilityTarget.name)
 												targetableFighters.append(abilityTarget)
 										#print(targetableFighters)
 										#print(self.fighters)
-										targetChoice = Gooey.getUserInputWithList("Who would you like to target?", fighterNames)
-										fighter.useAbility(abilityChoice, targetableFighters[targetChoice])
+										targetChoice = Gooey.getUserInputWithList("Who would you like to target?", fighter_names)
+										fighter.use_ability(ability_choice, targetableFighters[targetChoice])
 									else: 
-										Gooey.printLine("Not enough AP. " + abilityName + " costs " + str(abilityCost) + " AP to use.") 
+										Gooey.printLine("Not enough AP. " + ability_name + " costs " + str(ability_cost) + " AP to use.") 
 								else: Gooey.printLine("No abilities")
 							elif choice == 2: # SKIP
 								pass
@@ -105,15 +105,15 @@ class Battle:
 					pass
 			else: print("...")
 			
-			gameIsRunning = self.checkBothTeamsAlive()	 
+			battle_is_ongoing = self.check_both_teams_alive()	 
 	
-	def determineTurnOrder(self):
+	def determine_turn_order(self):
 		charCount = len(self.fighters)
 		if PRINT_DETAILED_STATS == True: print("Determining turn order ("+str(charCount)+" characters)")
 		characterSpeeds = []
 		
 		#print("Presort:")
-		#self.printCharSpeeds()
+		#self.print_speeds()
 		
 		for char in self.fighters:
 			charIndex = self.fighters.index(char)
@@ -129,13 +129,13 @@ class Battle:
 		
 		self.fighters = sortedCharacters
 		#print("Post sort:")
-		#self.printCharSpeeds()
+		#self.print_speeds()
 		
-	def printCharSpeeds(self):
+	def print_speeds(self):
 		for char in self.fighters:
 			print(char.speed)
 		
-	def checkBothTeamsAlive(self):
+	def check_both_teams_alive(self):
 		return self.friendlies_alive() and self.enemies_alive()
 	
 	def friendlies_alive(self):

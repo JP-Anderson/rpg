@@ -33,7 +33,7 @@ class Character:
 		self.speed = speed
 		self.humanity = humanity
 		self.is_playable = is_playable
-		self.abilityList = AbilityList()
+		self.ability_list = AbilityList()
 		
 		self.maxHP = BASE_HEALTH + endurance*20
 		self.hp = self.maxHP
@@ -95,9 +95,9 @@ class Character:
 				self.hp = self.maxHP
 		print(self.name + " has " + str(self.hp) + "/"+ str(self.maxHP) +" health remaining.")
 	
-	def useAbility(self, abilityChoice, target):
-		self.abilityList.useAbility(abilityChoice, target)
-		abilityCost = self.abilityList.abilities[abilityChoice].apCost
+	def use_ability(self, abilityChoice, target):
+		self.ability_list.use_ability(abilityChoice, target)
+		abilityCost = self.ability_list.abilities[abilityChoice].apCost
 		self.ap = self.ap - abilityCost
 	
 	def equipArmour(self, armour):

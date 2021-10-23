@@ -37,7 +37,7 @@ class TestMain:
 	c1 = cf.build()
 	print("Create second 0character...")
 	c2 = cf.build()
-	c1.abilityList.addAbility(MasterHeal())	
+	c1.ability_list.add_ability(MasterHeal())	
 	c1.weapon = wep_list[3]
 	c1.equipArmour(armour[3])
 	c1.equipArmour(armour[4])
@@ -49,7 +49,7 @@ class TestMain:
 	c2.equipArmour(armour[1])
 	c2.equipArmour(armour[2])
 	c2.getEquipmentLoad()
-	c2.abilityList.addAbility(EMPBlast())
+	c2.ability_list.add_ability(EMPBlast())
 	
 	print("    - synth1")
 	

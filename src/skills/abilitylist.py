@@ -5,25 +5,25 @@ class AbilityList:
 	def __init__(self):
 		self.abilities = []
 	
-	def addAbility(self, ability):
+	def add_ability(self, ability):
 		self.abilities.append(ability)
 	
-	def useAbility(self, index, target):
+	def use_ability(self, index, target):
 		self.abilities[index].cast(target)
 	
-	def isEmpty(self):
+	def is_empty(self):
 		if not self.abilities:
 			return True
 		else: return False
 	
-	def returnNameStrings(self):
+	def return_name_strings(self):
 		strings = []
 		if len(self.abilities)>0:
 			for ability in self.abilities:
 				strings.append(ability.name)
 		return strings
 	
-	def returnAbilityCosts(self):
+	def return_ability_costs(self):
 		costs = []
 		if len(self.abilities)>0:
 			for ability in self.abilities:

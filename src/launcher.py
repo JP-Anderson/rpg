@@ -27,7 +27,7 @@ class Launcher:
 	bob.strength = 10
 	bob.agility = 8
 	bob.speed = 2
-	bob.abilityList.addAbility(MasterHeal())	
+	bob.ability_list.add_ability(MasterHeal())	
 	
 	bob.weapon = State.weapons[3]
 	bob.equipArmour(State.armour[3])
@@ -46,7 +46,7 @@ class Launcher:
 	bill.equipArmour(State.armour[1])
 	bill.equipArmour(State.armour[2])
 	bill.getEquipmentLoad()
-	bill.abilityList.addAbility(EMPBlast())
+	bill.ability_list.add_ability(EMPBlast())
 	"""
 	for i in range (0,4):
 		print("Battle " + str(i+1))
