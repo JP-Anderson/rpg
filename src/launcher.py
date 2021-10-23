@@ -2,7 +2,7 @@
 from settings import *
 
 import utils.state as State
-from utils.characterfactory import CharacterFactory
+from utils.character_creator import CharacterCreator
 from character import Character
 
 from combat.mission import Mission
@@ -16,7 +16,7 @@ class Launcher:
 	m1 = Mission(1,4)
 	m1.to_string()
 	
-	cf = CharacterFactory()
+	cf = CharacterCreator()
 	character1 = cf.build()
 	character2 = cf.build()
 	"""

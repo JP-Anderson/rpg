@@ -2,7 +2,7 @@
 from settings import *
 from character import Character
 from utils.csvreader import CsvReader
-from utils.characterfactory import CharacterFactory
+from utils.character_creator import CharacterCreator
 from items.weapon import Weapon
 from items.armour import Armour
 from combat.battle import Battle
@@ -33,7 +33,7 @@ class TestMain:
 		
 	
 
-	cf = CharacterFactory(free_stat_points=20)
+	cf = CharacterCreator(free_stat_points=20)
 	print("Create first character...")
 	c1 = cf.build()
 	print("Create second 0character...")

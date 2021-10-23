@@ -5,7 +5,7 @@ import utils.state as State
 from utils.gooey import Gooey
 from character import Character
 			
-class CharacterFactory:
+class CharacterCreator:
 
 	def __init__(self, free_stat_points=10):
 		self.fighter_stats = []
