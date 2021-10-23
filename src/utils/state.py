@@ -10,10 +10,10 @@ from skills.buff import Buff
 
 weapons = []
 terminals = []
-armour = []
+armours = []
 buffs = []
 
-def loadCSVs():
+def load_csvs():
 	weaponcsv = CsvReader.read(os.path.join("..","data","wep.csv"))
 	keys = weaponcsv[0]
 	number_of_objects = len(weaponcsv)
@@ -35,7 +35,7 @@ def loadCSVs():
 	number_of_objects = len(armourcsv)
 	print("  Loading Armour")
 	for i in range (1,number_of_objects):
-		armour.append(Armour(keys,armourcsv[i]))
+		armours.append(Armour(keys,armourcsv[i]))
 		print("    - " + str(armourcsv[i][1]))
 	
 	buffcsv = CsvReader.read(os.path.join("..","data","buff.csv"))

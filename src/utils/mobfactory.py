@@ -7,7 +7,7 @@ from character import Character
 class MobFactory:
 
 	def __init__(self, weapons=None):
-		if weapons: self.weapons_list = weapons.list()
+		if weapons: self.weapons_list = weapons
 		else: self.weapons_list = Weapons().list()
 
 	def build_mob(self, area_type, stage):
