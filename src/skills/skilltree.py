@@ -1,13 +1,11 @@
-# skill class
 from settings import *
-from settings.gooey import Gooey
-from skill import Skill
+from skills.skill import Skill
 
 class SkillTree:
 
 	
 	#lol
-	def __init__(self, name, description, levelCount, arrayOfChoices):
+	def __init__(self, name, description, levelCount, arrayOfChoices, gui):
 		#print ("we are here")
 		self.name = name
 		self.level = 0
@@ -15,19 +13,26 @@ class SkillTree:
 		self.levelCount = levelCount
 		self.skillList = arrayOfChoices
 		self.selectedSkills = []
+		self.gui = gui
+		
 	
 	def levelUp(self):
-		if (self.level < self.levelCount):
-			self.level = self.level+1
-			Gooey.printLine("Level " + str(self.level) + " " + self.name + " " + " reached")
-			selection = Gooey.getUserInputWithList("Choose the skill for this level",self.getOptionStrings(self.level))
-			self.selectedSkills.append(self.skillList[self.level-1][selection])
-		else: print("This skill has been maxed out!")
+		if self.is_max_level():
+			print("This skill has been maxed out!")
+			return
+		selection = self.gui.getUserInputWithList("Choose the skill for this level",self.getOptionStrings())
+		self.selectedSkills.append(self.skillList[self.level][selection])
+		self.level = self.level+1
+		self.gui.printLine("Level " + str(self.level) + " " + self.name + " " + " reached")
 	
+	def is_max_level(self):
+		return self.level >= self.levelCount
 	
-	def getOptionStrings(self, level):
+	def getOptionStrings(self):
+		if self.is_max_level():
+			return []
 		optionStrings = []
-		availableSkillsAtThisLevel = self.skillList[self.level-1]
+		availableSkillsAtThisLevel = self.skillList[self.level]
 		optionStrings.append(availableSkillsAtThisLevel[0].name)
 		optionStrings.append(availableSkillsAtThisLevel[1].name)
 		return optionStrings
