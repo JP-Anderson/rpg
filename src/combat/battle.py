@@ -38,7 +38,7 @@ class Battle:
 					choice = 0
 					while choice != 2:
 						fightersToAttack = []
-						if fighter.isPlayable:
+						if fighter.is_playable:
 							for potentialTarget in self.enemies:
 								if potentialTarget.status != Status.DEAD: fightersToAttack.append(potentialTarget)
 						else:

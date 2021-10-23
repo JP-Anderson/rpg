@@ -19,12 +19,12 @@ class Character:
 				agility=7,
 				speed=7,
 				humanity=1.0,
-				isPlayable=True,
-				charClass = Class.FIGHTER
+				is_playable=True,
+				char_class = Class.FIGHTER
 				):
 		self.name = name
 		self.level = level
-		self.charClass = charClass
+		self.char_class = char_class
 		self.strength = strength
 		self.dexterity = dexterity
 		self.endurance = endurance
@@ -32,7 +32,7 @@ class Character:
 		self.agility = agility
 		self.speed = speed
 		self.humanity = humanity
-		self.isPlayable = isPlayable
+		self.is_playable = is_playable
 		self.abilityList = AbilityList()
 		
 		self.maxHP = BASE_HEALTH + endurance*20

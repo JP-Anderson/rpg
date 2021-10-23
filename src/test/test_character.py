@@ -14,8 +14,8 @@ class TestCharacter(unittest.TestCase):
 				agility=7,
 				speed=7,
 				humanity=1.0,
-				isPlayable=True,
-				charClass = Class.FIGHTER)
+				is_playable=True,
+				char_class = Class.FIGHTER)
 		maxHP = 400 + 7 * 20
 		self.assertEqual(maxHP, character.maxHP)
 		self.assertEqual(maxHP, character.hp)
@@ -36,8 +36,8 @@ class TestCharacter(unittest.TestCase):
 				agility=7,
 				speed=7,
 				humanity=1.0,
-				isPlayable=True,
-				charClass = Class.FIGHTER)
+				is_playable=True,
+				char_class = Class.FIGHTER)
 		self.assertFalse(character.is_dead())
 		character.adjust_health(-character.maxHP + 1)
 		self.assertFalse(character.is_dead())
@@ -54,8 +54,8 @@ class TestCharacter(unittest.TestCase):
 			agility=7,
 			speed=7,
 			humanity=1.0,
-			isPlayable=True,
-			charClass = Class.FIGHTER)
+			is_playable=True,
+			char_class = Class.FIGHTER)
 		self.assertEqual(0, character.xp)
 		self.assertEqual(1, character.level)
 		character.gain_xp(100)
@@ -71,8 +71,8 @@ class TestCharacter(unittest.TestCase):
 			agility=7,
 			speed=7,
 			humanity=1.0,
-			isPlayable=True,
-			charClass = Class.FIGHTER)
+			is_playable=True,
+			char_class = Class.FIGHTER)
 		self.assertEqual(0, character.xp)
 		self.assertEqual(1, character.level)
 		character.gain_xp(900)
@@ -89,8 +89,8 @@ class TestCharacter(unittest.TestCase):
 			agility=7,
 			speed=7,
 			humanity=1.0,
-			isPlayable=True,
-			charClass = Class.FIGHTER)
+			is_playable=True,
+			char_class = Class.FIGHTER)
 		self.assertEqual(0, character.xp)
 		self.assertEqual(1, character.level)
 		self.assertEqual(100, character.xp_to_next_level())

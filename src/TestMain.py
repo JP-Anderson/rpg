@@ -53,15 +53,15 @@ class TestMain:
 	
 	print("    - synth1")
 	
-	synth1 = Character(name="synth1", endurance=39, isPlayable=False, humanity=0.0)
+	synth1 = Character(name="synth1", endurance=39, is_playable=False, humanity=0.0)
 	synth1.agility = 13
 	synth1.speed = 3
 	
-	synth2 = Character(name="synth2", endurance=10, speed=25, agility=25, isPlayable=False, humanity=0.3)
+	synth2 = Character(name="synth2", endurance=10, speed=25, agility=25, is_playable=False, humanity=0.3)
 	synth2.speed=12
 	
 	
-	synth3 = Character(name="synth3", isPlayable=False, humanity=0.6)
+	synth3 = Character(name="synth3", is_playable=False, humanity=0.6)
 	synth3.speed=1
 	
 	synth1.weapon = wep_list[7]

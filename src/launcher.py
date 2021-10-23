@@ -23,7 +23,7 @@ class Launcher:
 	print("Creating characters.")
 	
 	print("    - Bob")
-	bob = Character(endurance=25, dexterity=50, isPlayable=True)
+	bob = Character(endurance=25, dexterity=50, is_playable=True)
 	bob.strength = 10
 	bob.agility = 8
 	bob.speed = 2
@@ -35,7 +35,7 @@ class Launcher:
 	bob.equipArmour(State.armour[5])
 	bob.getEquipmentLoad()
 	
-	bill = Character(endurance=25, dexterity=20, isPlayable=True)
+	bill = Character(endurance=25, dexterity=20, is_playable=True)
 	bill.strength = 60
 	bill.agility = 19
 	bill.speed = 10
