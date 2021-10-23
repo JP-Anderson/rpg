@@ -13,7 +13,7 @@ class TestMain:
 
 	print("LOADING!")
 	
-	weapons = Weapons()
+	weapons = Weapons(path_prefix="..\\")
 	wep_list = weapons.list()
 	numberOfObjects = len(wep_list)
 	print("  Loading Weapons")
