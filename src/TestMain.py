@@ -2,6 +2,7 @@
 from settings import *
 from character import Character
 from utils.csvreader import CsvReader
+from utils.characterfactory import CharacterFactory
 from items.weapon import Weapon
 from items.armour import Armour
 from combat.battle import Battle
@@ -30,32 +31,25 @@ class TestMain:
 		print("    - " + str(armourcsv[i][1]))
 		
 	
-	print("  Loading Characters")
-	print("    - Bob")
-	bob = Character(endurance=25, dexterity=50, isPlayable=True)
-	bob.strength = 10
-	bob.agility = 8
-	bob.speed = 2
-	bob.abilityList.addAbility(MasterHeal())	
+
+	cf = CharacterFactory(free_stat_points=20)
+	print("Create first character...")
+	c1 = cf.build()
+	print("Create second 0character...")
+	c2 = cf.build()
+	c1.abilityList.addAbility(MasterHeal())	
+	c1.weapon = wep_list[3]
+	c1.equipArmour(armour[3])
+	c1.equipArmour(armour[4])
+	c1.equipArmour(armour[5])
+	c1.getEquipmentLoad()
 	
-	bob.weapon = wep_list[3]
-	bob.equipArmour(armour[3])
-	bob.equipArmour(armour[4])
-	bob.equipArmour(armour[5])
-	bob.getEquipmentLoad()
-	
-	bill = Character(endurance=25, dexterity=20, isPlayable=True)
-	bill.strength = 80
-	bill.agility = 19
-	bill.speed = 10
-	bill.name="Bill"
-	
-	bill.weapon = wep_list[6]
-	bill.equipArmour(armour[0])
-	bill.equipArmour(armour[1])
-	bill.equipArmour(armour[2])
-	bill.getEquipmentLoad()
-	bill.abilityList.addAbility(EMPBlast())
+	c2.weapon = wep_list[6]
+	c2.equipArmour(armour[0])
+	c2.equipArmour(armour[1])
+	c2.equipArmour(armour[2])
+	c2.getEquipmentLoad()
+	c2.abilityList.addAbility(EMPBlast())
 	
 	print("    - synth1")
 	
@@ -80,15 +74,6 @@ class TestMain:
 	
 	synth2.weapon = wep_list[4]
 	synth3.weapon = wep_list[9]
-
-	#battle = Battle([bob], [synth2, synth1, synth3])
 	
-	battle = Battle([bob, bill], [synth2, synth1])
-	
-	#for i in range (0,4):
-	#	print()
-	#	synth1.defend(bob.attack())
-	#	print()
-	#	synth2.defend(bob.attack())
-	
+	battle = Battle([c1, c2], [synth1, synth2])	
 	

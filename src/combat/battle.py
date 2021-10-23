@@ -21,6 +21,8 @@ class Battle:
 		print("fighter count " + str(self.fighterCount))
 		self.turnCount = 1
 		self.battleLoop()
+		if self.friendlies_alive():
+			print("You win!")
 	
 	def battleLoop(self):
 		roundCounter = 0
@@ -134,15 +136,18 @@ class Battle:
 			print(char.speed)
 		
 	def checkBothTeamsAlive(self):
-		areFriendliesAlive = False
-		areEnemiesAlive = False
-		for friendly in self.friendlies:
-			if not friendly.is_dead(): 
-				areFriendliesAlive = True
-		for enemy in self.enemies:
-			if not enemy.is_dead():
-				areEnemiesAlive = True
-		return areFriendliesAlive and areEnemiesAlive
+		return self.friendlies_alive() and self.enemies_alive()
+	
+	def friendlies_alive(self):
+		for f in self.friendlies:
+			if not f.is_dead():
+				return True
+	
+	def enemies_alive(self):
+		for e in self.enemies:
+			if not e.is_dead():
+				return True
+	
 	# per char
 	#	if char is alive
 	#	         and char effects doesnt contain stunned
