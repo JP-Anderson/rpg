@@ -7,15 +7,16 @@ from character import Character
 			
 class CharacterFactory:
 
-	def __init__(self):
+	def __init__(self, free_stat_points=10):
 		self.fighterStats = []
-		self.maxAvailableStatPoints = STARTING_STAT_POINTS
-		self.unusedStatPoints = 0
+		self.maxAvailableStatPoints = free_stat_points
+		self.unusedStatPoints = self.maxAvailableStatPoints
 		
 		self.name = ""
 		self.charClass = 0
 	
 	def build(self):
+		self.unusedStatPoints = self.maxAvailableStatPoints
 		fighterClass = self.setCharacterNameAndClass()
 		self.setCharacterStats(fighterClass)
 		self.setCharacterHumanity()
@@ -156,7 +157,7 @@ class CharacterFactory:
 				"Drugs (healing, damage/resistance/stat buffs) are very effective on you."])
 	
 	def buildCharacter(self):
-		bob = Character(name = self.name,
+		return Character(name = self.name,
 			charClass = self.charClass,
 			strength = self.fighterStats[0],
 			dexterity = self.fighterStats[1],
@@ -167,14 +168,3 @@ class CharacterFactory:
 			humanity = self.fighterStats[6],
 			isPlayable = True)
 		
-		if self.charClass == Class.FIGHTER:
-			bob.weapon = State.weapons[3]
-		else: bob.weapon = State.weapons[13]
-		
-		bob.equipArmour(State.armour[3])
-		bob.equipArmour(State.armour[4])
-		bob.equipArmour(State.armour[5])
-		#bob.getEquipmentLoad()
-		
-		return bob
-			
