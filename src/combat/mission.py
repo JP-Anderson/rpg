@@ -7,7 +7,7 @@ class Mission:
 	def __init__(self, stage_count, weapons):
 		self.stages = []
 		self.stage_count = stage_count
-		mob_factory = MobFactory(weapons)
+		mob_factory = MobFactory(weapons=weapons)
 		for i in range(0,self.stage_count):
 			self.stages.append(mob_factory.build_mob(1,i))
 	
