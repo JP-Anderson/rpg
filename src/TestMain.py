@@ -8,7 +8,6 @@ from items.armour import Armour
 from combat.battle import Battle
 from combat.mission import Mission
 from skills.targets import *
-from utils.loader import Weapons
 from utils.state import *
 
 

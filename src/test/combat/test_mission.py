@@ -1,11 +1,13 @@
 import unittest
 
+from utils.state import *
+
 from combat.mission import Mission
 
 class TestMission(unittest.TestCase):
 
 	def test_new_synth_mission(self):
-		mission = Mission(1, 4)
+		mission = Mission(4, weapons)
 		# Assert 4 stages
 		self.assertEqual(4, len(mission.stages))
 		# First stage has 1 enemy
