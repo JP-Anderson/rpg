@@ -1,0 +1,10 @@
+[project]
+name = "rpg"
+version = "0.1.0"
+description = "Create a pyproject.toml file for an existing project."
+authors = [
+    "JP"
+]
+license = "whatevs"
+readme = "README.md"
+python = "^3.6"
